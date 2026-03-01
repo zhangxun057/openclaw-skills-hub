@@ -47,7 +47,7 @@ export default async function Home() {
               GitHub 仓库
             </a>
             <a
-              href="#submit"
+              href="/submit"
               className="inline-flex items-center gap-2 bg-white text-orange-600 hover:bg-gray-100 px-4 py-2 rounded-lg transition font-medium"
             >
               提交技能
@@ -79,7 +79,7 @@ export default async function Home() {
           
           <div className="space-y-4 text-gray-700">
             <p><strong>技能上传者（有 Git 权限）：</strong></p>            <ol className="list-decimal list-inside space-y-2 ml-4">
-              <li>克隆仓库：<code className="bg-gray-200 px-2 py-1 rounded">git clone https://github.com/zhangxun057/openclaw-skills.git</code></li>              <li>创建技能文件：<code className="bg-gray-200 px-2 py-1 rounded">skill-{功能}.md</code></li>
+              <li>克隆仓库：<code className="bg-gray-200 px-2 py-1 rounded">git clone https://github.com/zhangxun057/openclaw-skills.git</code></li>              <li>创建技能文件：<code className="bg-gray-200 px-2 py-1 rounded">skill-{'{功能}'}.md</code></li>
               <li>提交并推送：<code className="bg-gray-200 px-2 py-1 rounded">git add . && git commit -m "Add skill: xxx" && git push</code></li>
             </ol>
 
