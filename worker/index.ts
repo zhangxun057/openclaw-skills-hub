@@ -51,8 +51,11 @@ export default {
       // Option 1: Create an issue with the skill content
       const issueBody = `## 新技能提交\n\n**技能名称:** ${skillName}\n**贡献者:** ${contributor}\n\n### 内容\n\n\`\`\`markdown\n${skillContent}\n\`\`\`\n\n### 建议文件名\n\`${filename}\``;
 
+      // Hardcode repo to ensure correct target
+      const GITHUB_REPO = 'zhangxun057/openclaw-skills';
+      
       const response = await fetch(
-        `https://api.github.com/repos/${env.GITHUB_REPO}/issues`,
+        `https://api.github.com/repos/${GITHUB_REPO}/issues`,
         {
           method: 'POST',
           headers: {
