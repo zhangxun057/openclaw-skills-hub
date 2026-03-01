@@ -18,28 +18,28 @@ export default function SubmitPage() {
     setResult(null)
 
     try {
-      // In a real implementation, this would send to a Cloudflare Worker
-      // that creates a GitHub PR or issue
-      const response = await fetch('/api/submit-skill', {
+      // 调用 Cloudflare Worker API 提交技能
+      const response = await fetch('https://openclaw-skills-hub-api.zhangxun057.workers.dev', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
 
-      if (response.ok) {
+      const data = await response.json()
+
+      if (response.ok && data.success) {
         setResult({
           success: true,
-          message: '技能提交成功！我们会尽快审核并合并到仓库中。',
+          message: `✅ 技能提交成功！\n\nGitHub Issue 已创建: ${data.issueUrl}\n\n张洵会收到通知并审核合并。`,
         })
         setFormData({ skillName: '', content: '', contributor: '' })
       } else {
-        throw new Error('提交失败')
+        throw new Error(data.error || '提交失败')
       }
     } catch (error) {
-      // For now, show a message about the Git workflow
       setResult({
         success: false,
-        message: '当前需要通过 GitHub 提交。请查看下方的替代方案。',
+        message: '❌ 提交失败: ' + (error instanceof Error ? error.message : '未知错误') + '\n\n请检查网络连接，或通过 GitHub 直接提交。',
       })
     } finally {
       setSubmitting(false)
@@ -69,49 +69,33 @@ export default function SubmitPage() {
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Alternative Methods */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
-          <h2 className="text-lg font-semibold text-blue-900 mb-3">📋 当前推荐的提交方式</h2>
-          <p className="text-blue-800 mb-4">
-            由于技术限制，当前请通过以下方式提交技能：
-          </p>
-          <ol className="list-decimal list-inside space-y-2 text-blue-800">
-            <li>
-              Fork 
-              <a
-                href="https://github.com/zhangxun057/openclaw-skills"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline font-medium"
-              >
-                GitHub 仓库
-              </a>
-            </li>
-            <li>在 <code>skills/</code> 目录下创建你的技能文件</li>
-            <li>提交 Pull Request</li>
-          </ol>
-          <div className="mt-4 p-4 bg-white rounded-lg">
-            <h3 className="font-medium text-gray-900 mb-2">技能文件模板：</h3>
-            <pre className="text-sm text-gray-600 bg-gray-100 p-3 rounded overflow-x-auto">
-{`# Skill: 技能名称
-
-## 用途
-简要说明这个技能解决什么问题。
-
-## 前置条件
-- 需要什么工具？
-- 需要什么权限？
-
-## 步骤
-1. 第一步...
-2. 第二步...
-
-## 常见问题
-### 问题1
-解决方案...
-
----
-_贡献者: 你的名字_
-_日期: 2026-02-28_`}
-            </pre>
+          <h2 className="text-lg font-semibold text-blue-900 mb-3">📝 如何提交技能？</h2>
+          <div className="space-y-3 text-blue-800">
+            <p>
+              <strong>方式一：填写下方表单（推荐，30秒完成）</strong>
+            </p>
+            <p>
+              填写技能名称、贡献者姓名、技能内容，点击提交即可。
+              系统会自动创建 GitHub Issue，张洵会收到通知并审核。
+            </p>
+            <p>
+              <strong>方式二：通过 GitHub 提交</strong>
+            </p>
+            <ol className="list-decimal list-inside space-y-1 ml-4">
+              <li>
+                Fork 
+                <a
+                  href="https://github.com/zhangxun057/openclaw-skills"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline font-medium"
+                >
+                  GitHub 仓库
+                </a>
+              </li>
+              <li>在 <code>skills/</code> 目录下创建你的技能文件夹</li>
+              <li>提交 Pull Request</li>
+            </ol>
           </div>
         </div>
 
@@ -128,8 +112,35 @@ _日期: 2026-02-28_`}
           </div>
         )}
 
-        {/* Form - Disabled for now */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md border border-gray-200 p-6 opacity-50 pointer-events-none">
+        {/* Form */}
+        <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
+          <h3 className="font-medium text-gray-900 mb-2">📄 技能文件模板（复制修改）:</h3>
+          <pre className="text-sm text-gray-600 bg-white p-3 rounded overflow-x-auto">
+{`---
+name: skill-name
+description: "技能描述，说明使用场景"
+---
+
+# Skill: 技能名称
+
+## 用途
+简要说明这个技能解决什么问题。
+
+## 前置条件
+- 需要什么工具？
+- 需要什么权限？
+
+## 步骤
+1. 第一步...
+2. 第二步...
+
+## 常见问题
+### 问题1
+解决方案...`}
+          </pre>
+        </div>
+
+        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
           <div className="mb-4">
             <label htmlFor="skillName" className="block text-sm font-medium text-gray-700 mb-1">
               技能名称
