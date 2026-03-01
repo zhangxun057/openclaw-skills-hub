@@ -8,6 +8,7 @@ export default function SubmitPage() {
     skillName: '',
     content: '',
     contributor: '',
+    password: '',
   })
   const [submitting, setSubmitting] = useState(false)
   const [result, setResult] = useState<{ success: boolean; message: string } | null>(null)
@@ -32,14 +33,14 @@ export default function SubmitPage() {
           success: true,
           message: `✅ 技能提交成功！\n\nGitHub Issue 已创建: ${data.issueUrl}\n\n张洵会收到通知并审核合并。`,
         })
-        setFormData({ skillName: '', content: '', contributor: '' })
+        setFormData({ skillName: '', content: '', contributor: '', password: '' })
       } else {
-        throw new Error(data.error || '提交失败')
+        throw new Error(data.error || data.message || '提交失败')
       }
     } catch (error) {
       setResult({
         success: false,
-        message: '❌ 提交失败: ' + (error instanceof Error ? error.message : '未知错误') + '\n\n请检查网络连接，或通过 GitHub 直接提交。',
+        message: '❌ ' + (error instanceof Error ? error.message : '提交失败'),
       })
     } finally {
       setSubmitting(false)
@@ -67,45 +68,57 @@ export default function SubmitPage() {
       </header>
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Alternative Methods */}
+        {/* 提交说明 */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8">
-          <h2 className="text-lg font-semibold text-blue-900 mb-3">📝 如何提交技能？</h2>
-          <div className="space-y-3 text-blue-800">
-            <p>
-              <strong>方式一：填写下方表单（推荐，30秒完成）</strong>
-            </p>
-            <p>
-              填写技能名称、贡献者姓名、技能内容，点击提交即可。
-              系统会自动创建 GitHub Issue，张洵会收到通知并审核。
-            </p>
-            <p>
-              <strong>方式二：通过 GitHub 提交</strong>
-            </p>
-            <ol className="list-decimal list-inside space-y-1 ml-4">
-              <li>
-                Fork 
-                <a
-                  href="https://github.com/zhangxun057/openclaw-skills"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline font-medium"
-                >
-                  GitHub 仓库
-                </a>
-              </li>
-              <li>在 <code>skills/</code> 目录下创建你的技能文件夹</li>
-              <li>提交 Pull Request</li>
-            </ol>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-2xl">📝</span>
+            <h2 className="text-xl font-bold text-blue-900">如何提交技能？</h2>
+          </div>
+          
+          <div className="space-y-4">
+            {/* 方式一：表单 */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-green-500">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="font-bold text-gray-800">方式一：网站表单（推荐）</span>
+                <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded">无需 GitHub 权限</span>
+              </div>
+              <p className="text-gray-600 text-sm mb-2">
+                适合其他龙虾提交技能。需要提交密码（联系张洵获取）。
+              </p>
+              <ol className="list-decimal list-inside text-sm text-gray-600 space-y-1 ml-2">
+                <li>填写下方表单（技能名称、贡献者、内容、密码）</li>
+                <li>点击提交</li>
+                <li>系统自动创建 GitHub Issue</li>
+                <li>张洵审核后合并到仓库</li>
+              </ol>
+            </div>
+
+            {/* 方式二：Git */}
+            <div className="bg-white rounded-lg p-4 border-l-4 border-orange-500">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="font-bold text-gray-800">方式二：Git 提交（适合张洵自己）</span>
+                <span className="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded">需要写权限</span>
+              </div>
+              <pre className="text-xs bg-gray-100 p-2 rounded overflow-x-auto">
+{`git clone https://github.com/zhangxun057/openclaw-skills.git
+cd openclaw-skills/skills
+mkdir your-skill-name
+cp your-skill.md your-skill-name/SKILL.md
+git add .
+git commit -m "Add skill: your-skill-name"
+git push`}
+              </pre>
+            </div>
           </div>
         </div>
 
         {/* Result Message */}
         {result && (
           <div
-            className={`rounded-lg p-4 mb-6 ${
+            className={`rounded-lg p-4 mb-6 whitespace-pre-line ${
               result.success
                 ? 'bg-green-50 border border-green-200 text-green-800'
-                : 'bg-yellow-50 border border-yellow-200 text-yellow-800'
+                : 'bg-red-50 border border-red-200 text-red-800'
             }`}
           >
             {result.message}
@@ -151,7 +164,7 @@ description: "技能描述，说明使用场景"
               value={formData.skillName}
               onChange={(e) => setFormData({ ...formData, skillName: e.target.value })}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
-              placeholder="例如：GitHub CLI 登录"
+              placeholder="例如：docker-deploy"
               required
             />
           </div>
@@ -171,7 +184,7 @@ description: "技能描述，说明使用场景"
             />
           </div>
 
-          <div className="mb-6">
+          <div className="mb-4">
             <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">
               技能内容 (Markdown)
             </label>
@@ -179,11 +192,28 @@ description: "技能描述，说明使用场景"
               id="content"
               value={formData.content}
               onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              rows={15}
+              rows={12}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none font-mono text-sm"
               placeholder="# Skill: ..."
               required
             />
+          </div>
+
+          <div className="mb-6">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              提交密码
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={formData.password}
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent outline-none"
+              placeholder="请输入6位提交密码"
+              required
+              maxLength={6}
+            />
+            <p className="text-xs text-gray-500 mt-1">联系张洵获取提交密码</p>
           </div>
 
           <button

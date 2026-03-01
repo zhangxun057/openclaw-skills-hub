@@ -3,8 +3,11 @@
 
 export interface Env {
   GITHUB_TOKEN: string;
-  GITHUB_REPO: string;
+  SUBMIT_PASSWORD: string;  // 提交密码
 }
+
+// 默认密码（如果没有设置环境变量）
+const DEFAULT_PASSWORD = '181818';
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
@@ -27,7 +30,19 @@ export default {
     }
 
     try {
-      const { skillName, content, contributor } = await request.json();
+      const { skillName, content, contributor, password } = await request.json();
+
+      // 验证密码
+      const expectedPassword = env.SUBMIT_PASSWORD || DEFAULT_PASSWORD;
+      if (password !== expectedPassword) {
+        return new Response(JSON.stringify({ 
+          error: '密码错误',
+          message: '请联系张洵获取提交密码'
+        }), {
+          status: 403,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
 
       if (!skillName || !content || !contributor) {
         return new Response(JSON.stringify({ 
@@ -48,7 +63,6 @@ export default {
       }
 
       // Create GitHub issue or PR
-      // Option 1: Create an issue with the skill content
       const issueBody = `## 新技能提交\n\n**技能名称:** ${skillName}\n**贡献者:** ${contributor}\n\n### 内容\n\n\`\`\`markdown\n${skillContent}\n\`\`\`\n\n### 建议文件名\n\`${filename}\``;
 
       // Hardcode repo to ensure correct target
