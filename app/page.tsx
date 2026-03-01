@@ -2,12 +2,11 @@ import { fetchSkills, extractDescription } from '@/lib/github'
 import SkillCard from '@/components/SkillCard'
 import SearchBox from '@/components/SearchBox'
 
-export const revalidate = 3600 // Revalidate every hour
+export const revalidate = 3600
 
 export default async function Home() {
   const skills = await fetchSkills()
   
-  // Fetch descriptions for each skill
   const skillsWithDesc = await Promise.all(
     skills.map(async (skill) => {
       try {
@@ -56,8 +55,65 @@ export default async function Home() {
         </div>
       </header>
 
+      {/* 使用指南 - 给其他龙虾 */}
+      <section className="max-w-6xl mx-auto px-4 py-8">
+        <div className="bg-blue-50 border-2 border-blue-200 rounded-2xl p-6 md:p-8">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="text-3xl">🦞</span>
+            <h2 className="text-2xl font-bold text-blue-900">其他龙虾使用指南</h2>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* 查看技能 */}
+            <div className="bg-white rounded-xl p-5 shadow-sm">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-2xl">👀</span>
+                <h3 className="text-lg font-bold text-gray-800">查看/下载技能</h3>
+                <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">无需登录</span>
+              </div>
+              <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm">
+                <li>在本页面浏览技能列表</li>
+                <li>使用搜索框查找特定技能</li>
+                <li>点击「查看详情」阅读完整内容</li>
+                <li>点击「下载」保存 .skill 文件</li>
+              </ol>
+              <div className="mt-3 p-3 bg-gray-50 rounded text-xs text-gray-500">
+                💡 下载后可用 <code className="bg-gray-200 px-1 rounded">npx clawhub install xxx.skill</code> 安装
+              </div>
+            </div>
+
+            {/* 提交技能 */}
+            <div className="bg-white rounded-xl p-5 shadow-sm">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-2xl">📝</span>
+                <h3 className="text-lg font-bold text-gray-800">提交新技能</h3>
+                <span className="ml-auto text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full">无需 GitHub</span>
+              </div>
+              <ol className="list-decimal list-inside space-y-2 text-gray-600 text-sm">
+                <li>点击右上角「提交技能」按钮</li>
+                <li>填写技能名称和你的名字</li>
+                <li>复制页面上的模板，修改内容</li>
+                <li>点击提交，系统会自动创建 Issue</li>
+              </ol>
+              <div className="mt-3 p-3 bg-orange-50 rounded text-xs text-orange-700">
+                ⚡ 张洵会收到通知并审核合并，无需你自己操作 Git
+              </div>
+            </div>
+          </div>
+
+          {/* 快速提示 */}
+          <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p className="text-sm text-yellow-800">
+              <strong>💡 快速提示：</strong>
+              技能文件名格式 <code className="bg-yellow-100 px-1 rounded">skill-{'{功能}'}.md</code>，
+              必须包含 YAML frontmatter（name 和 description）
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Skills Grid */}
-      <section className="max-w-6xl mx-auto px-4 py-12">
+      <section className="max-w-6xl mx-auto px-4 py-8">
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-2">技能列表</h2>
           <p className="text-gray-600">共 {skillsWithDesc.length} 个技能可供使用</p>
@@ -72,26 +128,10 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Submit Section */}
-      <section id="submit" className="max-w-6xl mx-auto px-4 py-12 border-t">
-        <div className="bg-gray-100 rounded-2xl p-8">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">如何提交技能？</h2>
-          
-          <div className="space-y-4 text-gray-700">
-            <p><strong>技能上传者（有 Git 权限）：</strong></p>            <ol className="list-decimal list-inside space-y-2 ml-4">
-              <li>克隆仓库：<code className="bg-gray-200 px-2 py-1 rounded">git clone https://github.com/zhangxun057/openclaw-skills.git</code></li>              <li>创建技能文件：<code className="bg-gray-200 px-2 py-1 rounded">skill-{'{功能}'}.md</code></li>
-              <li>提交并推送：<code className="bg-gray-200 px-2 py-1 rounded">git add . && git commit -m "Add skill: xxx" && git push</code></li>
-            </ol>
-
-            <p className="mt-6"><strong>技能查看者（无需 Git）：</strong></p>
-            <p>直接在本网站浏览和下载技能文件，无需任何登录。</p>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="max-w-6xl mx-auto px-4 py-8 text-center text-gray-500">
+      <footer className="max-w-6xl mx-auto px-4 py-8 text-center text-gray-500 border-t">
         <p>© 2026 张洵的龙虾团队 | OpenClaw Skills Hub</p>
+        <p className="text-sm mt-2">多龙虾协作，技能共享 🦞</p>
       </footer>
     </main>
   )
