@@ -12,17 +12,19 @@ interface SkillPageProps {
 }
 
 export async function generateStaticParams() {
-  const skills = await fetchSkills()
-  return skills.map((skill) => ({
-    name: skill.path.replace('.md', ''),
-  }))
+  // 硬编码技能列表以确保静态生成成功
+  return [
+    { name: 'gateway-restart' },
+    { name: 'browser-automation' },
+    { name: 'cloudflare-deploy' },
+  ]
 }
 
 export default async function SkillPage({ params }: SkillPageProps) {
   const skills = await fetchSkills()
-  const skillPath = `${decodeURIComponent(params.name)}.md`
+  const skillName = decodeURIComponent(params.name)
   
-  const skill = skills.find((s) => s.path === skillPath)
+  const skill = skills.find((s) => s.path === `${skillName}/SKILL.md`)
   
   if (!skill) {
     notFound()
