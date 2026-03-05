@@ -21,7 +21,6 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-400/10 via-red-400/5 to-purple-400/10" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-orange-300/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
