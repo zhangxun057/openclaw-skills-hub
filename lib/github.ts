@@ -6,53 +6,51 @@ export interface Skill {
   description?: string;
 }
 
+const PROXY_BASE = 'https://openclaw-skills-hub-7qp.pages.dev';
+
 export async function fetchSkills(): Promise<Skill[]> {
-  // 获取 skills 目录下的所有子目录（每个技能一个文件夹）
-  const response = await fetch(
-    'https://api.github.com/repos/zhangxun057/openclaw-skills/contents/skills',
-    { next: { revalidate: 3600 } } // Cache for 1 hour
-  );
-  
-  if (!response.ok) {
-    throw new Error('Failed to fetch skills');
+  try {
+    const response = await fetch(
+      `${PROXY_BASE}/api/github/repos/zhangxun057/openclaw-skills/contents/skills`,
+      { next: { revalidate: 3600 } }
+    );
+    
+    if (!response.ok) throw new Error(`API failed: ${response.status}`);
+    
+    const items = await response.json();
+    const skillDirs = items.filter((item: any) => item.type === 'dir');
+    
+    return skillDirs.map((dir: any) => ({
+      name: dir.name,
+      path: `${dir.name}/SKILL.md`,
+      download_url: `${PROXY_BASE}/raw/zhangxun057/openclaw-skills/master/skills/${dir.name}/SKILL.md`,
+    }));
+  } catch (error) {
+    console.error('Failed to fetch skills:', error);
+    return [];
   }
-  
-  const items = await response.json();
-  
-  // Filter only directories (each skill is now a folder)
-  const skillDirs = items.filter((item: any) => item.type === 'dir');
-  
-  // Map each directory to a skill
-  return skillDirs.map((dir: any) => ({
-    name: dir.name.replace(/-/g, ' '),
-    path: `${dir.name}/SKILL.md`,
-    download_url: `https://raw.githubusercontent.com/zhangxun057/openclaw-skills/master/skills/${dir.name}/SKILL.md`,
-  }));
 }
 
 export async function fetchSkillContent(downloadUrl: string): Promise<string> {
-  const response = await fetch(downloadUrl, { next: { revalidate: 3600 } });
-  
-  if (!response.ok) {
-    throw new Error('Failed to fetch skill content');
+  try {
+    const response = await fetch(downloadUrl, { next: { revalidate: 3600 } });
+    if (!response.ok) throw new Error(`Failed: ${response.status}`);
+    return response.text();
+  } catch (error) {
+    console.error('Failed to fetch content:', error);
+    return '# 加载失败\n\n无法获取内容，请稍后重试。';
   }
-  
-  return response.text();
 }
 
 export function extractDescription(content: string): string {
-  // Try to extract description from YAML frontmatter first
-  const frontmatterMatch = content.match(/description:\s*"([^"]+)"/);
-  if (frontmatterMatch) {
-    return frontmatterMatch[1].substring(0, 150) + (frontmatterMatch[1].length > 150 ? '...' : '');
-  }
+  const match = content.match(/description:\s*"([^"]+)"/);
+  if (match) return match[1].substring(0, 150) + (match[1].length > 150 ? '...' : '');
   
-  // Fallback: Extract first paragraph after title
   const lines = content.split('\n');
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (line && !line.startsWith('#') && !line.startsWith('---') && !line.startsWith('name:') && !line.startsWith('description:')) {
-      return line.replace(/^[-*>]+\s*/, '').substring(0, 150) + '...';
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed && !trimmed.startsWith('#') && !trimmed.startsWith('---') && !trimmed.includes(':')) {
+      return trimmed.replace(/^[-*>]+\s*/, '').substring(0, 150) + '...';
     }
   }
   return '点击查看详情';
