@@ -5,19 +5,15 @@ import { useState } from 'react'
 export default function SearchBox() {
   const [query, setQuery] = useState('')
 
-  // Client-side search will be handled by filtering the DOM
-  // In a real app, you might want to use a more sophisticated approach
-  
   return (
     <div className="mb-8">
-      <div className="relative max-w-md">
+      <div className="relative max-w-2xl mx-auto">
         <input
           type="text"
-          placeholder="搜索技能..."
+          placeholder="搜索技能名称或描述..."
           value={query}
           onChange={(e) => {
             setQuery(e.target.value)
-            // Filter logic would go here
             const cards = document.querySelectorAll('[data-skill-card]')
             cards.forEach((card) => {
               const title = card.querySelector('h3')?.textContent?.toLowerCase() || ''
@@ -27,10 +23,10 @@ export default function SearchBox() {
               ;(card as HTMLElement).style.display = match ? 'block' : 'none'
             })
           }}
-          className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+          className="w-full pl-12 pr-4 py-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
         />
         <svg
-          className="absolute left-3 top-3.5 w-5 h-5 text-gray-400"
+          className="absolute left-4 top-4 w-6 h-6 text-slate-500"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
