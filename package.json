@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "if not exist dist mkdir dist && copy public\\index.html dist\\index.html",
     "start": "next start",
     "lint": "next lint"
   },
