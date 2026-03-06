@@ -1,104 +1,67 @@
 # OpenClaw Skills Hub
 
-张洵的多龙虾技能共享平台网站
+张洵的多龙虾技能共享平台
 
-## 功能
+## 🌐 网站地址
 
-- 🦞 **技能展示** - 从 GitHub 仓库自动拉取技能列表
-- 🔍 **搜索功能** - 快速查找所需技能
-- 📖 **在线查看** - Markdown 渲染，支持代码高亮
-- ⬇️ **一键下载** - 直接下载技能文件
-- 📱 **响应式设计** - 支持手机、平板、电脑
+**固定域名**：https://claw-skills.pages.dev
 
-## 技术栈
+## 📋 功能
 
-- Next.js 14 (Static Export)
-- TypeScript
-- Tailwind CSS
-- GitHub API
+- 21个技能展示（5个分类）
+- 精美深色UI设计
+- 搜索功能
+- 无需GitHub账号的技能提交表单
+- 自动创建Issue审核
 
-## 部署
+## 🏗️ 技术架构
 
-### 本地开发
+- **前端**：纯HTML + 内联CSS + JavaScript（静态数据）
+- **部署**：Cloudflare Pages
+- **提交API**：Cloudflare Workers (`/api/submit`)
+- **构建**：直接复制 `public/index.html` 到 `dist/`
 
-```bash
-# 安装依赖
-npm install
+## 🚀 部署
 
-# 启动开发服务器
-npm run dev
-
-# 访问 http://localhost:3000
-```
-
-### 构建
+推送到 `master` 分支后，GitHub Actions 自动部署到 Cloudflare Pages。
 
 ```bash
-npm run build
-# 输出到 dist/ 目录
+git push origin master
 ```
 
-### Cloudflare Pages 部署
+## 📝 本地开发
 
-1. Fork 或导入本仓库到 GitHub
-2. 登录 Cloudflare Dashboard → Pages
-3. 创建项目，连接 GitHub 仓库
-4. 构建设置：
-   - Build command: `npm run build`
-   - Build output directory: `dist`
-5. 点击部署
+直接打开 `public/index.html` 即可预览（提交功能需要部署后才能使用）。
 
-### 自动部署
+## 🔑 环境变量
 
-已配置 GitHub Actions，每次推送到 main 分支自动部署到 Cloudflare Pages。
+在 Cloudflare Pages 项目设置中配置：
 
-需要在仓库 Secrets 中设置：
-- `CLOUDFLARE_API_TOKEN`
-- `CLOUDFLARE_ACCOUNT_ID`
+- `GITHUB_TOKEN`：用于创建Issue
+- `SUBMIT_PASSWORD`：提交密码（默认：181818）
 
-## 数据来源
+## 📂 项目结构
 
-技能数据来自： https://github.com/zhangxun057/openclaw-skills
-
-## 使用流程
-
-### 查看者（无需 Git）
-
-1. 打开网站
-2. 浏览或搜索技能
-3. 点击"查看详情"在线阅读
-4. 点击"下载"保存到本地
-
-### 上传者（需要 Git 权限）
-
-1. 克隆技能仓库：`git clone https://github.com/zhangxun057/openclaw-skills.git`
-2. 创建技能文件：`skill-{功能}.md`
-3. 提交并推送：`git add . && git commit -m "Add skill: xxx" && git push`
-4. 网站自动更新（每小时同步）
-
-## 技能文件规范
-
-```markdown
-# Skill: 技能名称
-
-## 用途
-简要说明这个技能解决什么问题。
-
-## 前置条件
-- 需要什么工具？
-- 需要什么权限？
-
-## 步骤
-具体操作指令...
-
-## 常见问题
-问题及解决方案...
+```
+.
+├── public/
+│   └── index.html          # 主页面（包含所有样式和逻辑）
+├── functions/
+│   └── api/
+│       └── submit.js       # 提交API（Cloudflare Worker）
+├── .github/
+│   └── workflows/
+│       └── deploy.yml      # GitHub Actions 部署配置
+└── package.json            # 构建脚本
 ```
 
-## 更新日志
+## 🛠️ 避坑经验
 
-- 2026-02-28: 初始版本发布
+1. **不要用 Next.js**：简单静态站点用纯HTML更可靠
+2. **Cloudflare Pages 项目名**：`claw-skills`（简短域名）
+3. **构建命令**：`npm run build`（复制HTML到dist）
+4. **部署目录**：`./dist`
 
 ---
 
-🦞 张洵的龙虾团队
+_最后更新：2026-03-06_
