@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenClaw Skills - 张洵的技能库</title>
+    <title>OpenClaw Skills - 寮犳吹鐨勬妧鑳藉簱</title>
     <style>
         * { 
             margin: 0; 
@@ -19,7 +19,7 @@
             min-height: 100vh;
         }
         
-        /* 背景网格 */
+        /* 鑳屾櫙缃戞牸 */
         .bg-pattern {
             position: fixed;
             inset: 0;
@@ -29,7 +29,7 @@
             z-index: 0;
         }
         
-        /* 渐变光晕 */
+        /* 娓愬彉鍏夋檿 */
         .bg-glow {
             position: fixed;
             top: 0;
@@ -432,103 +432,139 @@
     <div class="container">
         <div class="header">
             <div class="logo">
-                <div class="logo-icon">🦞</div>
+                <div class="logo-icon">馃</div>
                 <div class="logo-text">OpenClaw Skills</div>
             </div>
-            <div class="subtitle">21 个强大技能，让 AI 助手无所不能</div>
+            <div class="subtitle">21 涓己澶ф妧鑳斤紝璁?AI 鍔╂墜鏃犳墍涓嶈兘</div>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
                 <a href="https://github.com/zhangxun057/openclaw-skills" target="_blank" class="github-link">
                     <svg class="github-icon" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
                     </svg>
-                    查看源码
+                    鏌ョ湅婧愮爜
                 </a>
                 <a href="#submit" class="github-link" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);">
-                    📝 提交技能
+                    馃摑 鎻愪氦鎶€鑳?
                 </a>
             </div>
         </div>
 
         <div class="search-box">
-            <input type="text" class="search-input" placeholder="搜索技能..." id="search">
+            <input type="text" class="search-input" placeholder="鎼滅储鎶€鑳?.." id="search">
         </div>
 
         <div id="pendingSection" class="pending-section" style="display: none;">
-            <div class="pending-title">⏳ 待审核技能</div>
+            <div class="pending-title">鈴?寰呭鏍告妧鑳?/div>
             <div id="pendingList" class="pending-list"></div>
         </div>
 
         <div id="content"></div>
 
         <div id="submit" class="submit-section">
-            <h2>📝 提交新技能</h2>
-            <p style="color: #888; margin-bottom: 24px;">无需 GitHub 账号，填写表单即可提交。张洵会收到通知并审核。</p>
+            <h2>馃摑 鎻愪氦鏂版妧鑳?/h2>
+            <p style="color: #888; margin-bottom: 24px;">鏃犻渶 GitHub 璐﹀彿锛屽～鍐欒〃鍗曞嵆鍙彁浜ゃ€傚紶娲典細鏀跺埌閫氱煡骞跺鏍搞€?/p>
             <form id="submitForm">
                 <div class="form-group">
-                    <label>技能名称 *</label>
-                    <input type="text" id="skillName" required placeholder="例如：weather">
+                    <label>鎶€鑳藉悕绉?*</label>
+                    <input type="text" id="skillName" required placeholder="渚嬪锛歸eather">
                 </div>
                 <div class="form-group">
-                    <label>你的名字 *</label>
-                    <input type="text" id="contributor" required placeholder="例如：张三">
+                    <label>浣犵殑鍚嶅瓧 *</label>
+                    <input type="text" id="contributor" required placeholder="渚嬪锛氬紶涓?>
                 </div>
                 <div class="form-group">
-                    <label>技能内容 (Markdown) *</label>
+                    <label>鎶€鑳藉唴瀹?(Markdown) *</label>
                     <textarea id="skillContent" required placeholder="---
 name: weather
-description: 天气查询技能
+description: 澶╂皵鏌ヨ鎶€鑳?
 version: 1.0.0
 ---
 
-# 技能说明
+# 鎶€鑳借鏄?
 ..."></textarea>
                 </div>
                 <div class="form-group">
-                    <label>提交密码 *</label>
-                    <input type="password" id="password" required placeholder="联系张洵获取">
+                    <label>鎻愪氦瀵嗙爜 *</label>
+                    <input type="password" id="password" required placeholder="鑱旂郴寮犳吹鑾峰彇">
                 </div>
-                <button type="submit" class="btn-submit" id="submitBtn">提交技能</button>
+                <button type="submit" class="btn-submit" id="submitBtn">鎻愪氦鎶€鑳?/button>
                 <div id="submitResult"></div>
             </form>
         </div>
     </div>
 
     <script>
-        const skills = {
-            'AI & 图像': [
-                { name: 'Agent Tools', slug: 'agent-tools', desc: 'Run 150+ AI apps via inference.sh CLI - image generation, video, LLMs, search', icon: '🤖', source: 'community' },
-                { name: 'AI Image Generation', slug: 'ai-image-generation', desc: 'AI图像生成工具集成', icon: '🎨', source: 'community' },
-                { name: 'Flux Image', slug: 'flux-image', desc: 'Flux 图像生成', icon: '✨', source: 'community' },
-                { name: 'AI Product Photography', slug: 'ai-product-photography', desc: 'AI产品摄影', icon: '📸', source: 'community' },
+                const skills = {
+            'AI & 鍥惧儚': [
+                { name: 'Agent Tools', slug: 'agent-tools', desc: 'Run 150+ AI apps via inference.sh CLI', icon: '馃', source: 'community' },
+                { name: 'AI Image Generation', slug: 'ai-image-generation', desc: 'AI鍥惧儚鐢熸垚宸ュ叿闆嗘垚', icon: '馃帹', source: 'community' },
+                { name: 'Flux Image', slug: 'flux-image', desc: 'Flux 鍥惧儚鐢熸垚', icon: '鉁?, source: 'community' },
+                { name: 'AI Product Photography', slug: 'ai-product-photography', desc: 'AI浜у搧鎽勫奖', icon: '馃摳', source: 'community' },
+                { name: 'Jimeng 4 Image', slug: 'jimeng-4-image-generation', desc: '鍗虫ⅵ4.0鍥惧儚鐢熸垚', icon: '馃帹', source: 'original', author: '寮犳吹' },
+                { name: 'Seedream Image', slug: 'seedream-image-generation', desc: 'Seedream鍥惧儚鐢熸垚', icon: '馃尡', source: 'original', author: '寮犳吹' },
             ],
-            '视频 & 数字人': [
-                { name: 'AI Marketing Videos', slug: 'ai-marketing-videos', desc: 'AI营销视频生成', icon: '🎬', source: 'community' },
-                { name: 'AI Video Generation', slug: 'ai-video-generation', desc: 'AI视频生成工具', icon: '🎥', source: 'community' },
-                { name: 'Remotion Render', slug: 'remotion-render', desc: 'Remotion 视频渲染', icon: '🎞️', source: 'community' },
-                { name: 'Jimeng Digital Human', slug: 'jimeng-digital-human', desc: '即梦数字人', icon: '👤', source: 'community' },
+            '瑙嗛 & 鏁板瓧浜?: [
+                { name: 'AI Marketing Videos', slug: 'ai-marketing-videos', desc: 'AI钀ラ攢瑙嗛鐢熸垚', icon: '馃幀', source: 'community' },
+                { name: 'AI Video Generation', slug: 'ai-video-generation', desc: 'AI瑙嗛鐢熸垚宸ュ叿', icon: '馃帴', source: 'community' },
+                { name: 'Remotion Render', slug: 'remotion-render', desc: 'Remotion 瑙嗛娓叉煋', icon: '馃帪锔?, source: 'community' },
+                { name: 'Jimeng Digital Human', slug: 'jimeng-digital-human', desc: '鍗虫ⅵ鏁板瓧浜?, icon: '馃懁', source: 'community' },
             ],
-            '微信 & 社交': [
-                { name: 'WeChat Analyzer', slug: 'wechat-analyzer', desc: '微信好友自动化分析与档案生成工具', icon: '📊', source: 'original', author: '丑丑虾' },
-                { name: 'WeFlow', slug: 'weflow', desc: 'WeFlow 微信聊天记录工具集成', icon: '💬', source: 'original', author: '丑丑虾' },
-                { name: 'WeChat Send Message', slug: 'wechat-send-message', desc: '微信消息发送', icon: '📤', source: 'original', author: '丑丑虾' },
-                { name: 'Baoyu Post to WeChat', slug: 'baoyu-post-to-wechat', desc: '宝玉发布到微信', icon: '📝', source: 'community' },
+            '寰俊 & 绀句氦': [
+                { name: 'WeChat Analyzer', slug: 'wechat-analyzer', desc: '寰俊濂藉弸鑷姩鍖栧垎鏋愪笌妗ｆ鐢熸垚', icon: '馃搳', source: 'original', author: '寮犳吹' },
+                { name: 'WeFlow', slug: 'weflow', desc: 'WeFlow 寰俊鑱婂ぉ璁板綍宸ュ叿', icon: '馃挰', source: 'original', author: '寮犳吹' },
+                { name: 'WeChat Send Message', slug: 'wechat-send-message', desc: '寰俊娑堟伅鍙戦€?, icon: '馃摛', source: 'original', author: '寮犳吹' },
+                { name: 'WeChat MP Monitor', slug: 'wechat-mp-cn', desc: '寰俊鍏紬鍙风洃鎺?, icon: '馃摫', source: 'original', author: '寮犳吹' },
+                { name: 'Baoyu Post to WeChat', slug: 'baoyu-post-to-wechat', desc: '瀹濈帀鍙戝竷鍒板井淇?, icon: '馃摑', source: 'community' },
             ],
-            '开发 & 部署': [
-                { name: 'Browser Automation', slug: 'browser-automation', desc: 'OpenClaw 浏览器自动化操作', icon: '🌐', source: 'original', author: '丑丑虾' },
-                { name: 'Cloudflare Deploy', slug: 'cloudflare-deploy', desc: 'Cloudflare Pages 自动部署配置', icon: '☁️', source: 'original', author: '丑丑虾' },
-                { name: 'Skill Creator', slug: 'skill-creator', desc: 'Create or update AgentSkills', icon: '🛠️', source: 'official' },
-                { name: 'Gateway Restart', slug: 'gateway-restart', desc: 'OpenClaw Gateway 服务重启', icon: '🔄', source: 'original', author: '丑丑虾' },
+            '寮€鍙?& 閮ㄧ讲': [
+                { name: 'Browser Automation', slug: 'browser-automation', desc: 'OpenClaw 娴忚鍣ㄨ嚜鍔ㄥ寲', icon: '馃寪', source: 'original', author: '寮犳吹' },
+                { name: 'Cloudflare Deploy', slug: 'cloudflare-deploy', desc: 'Cloudflare Pages 鑷姩閮ㄧ讲', icon: '鈽侊笍', source: 'original', author: '寮犳吹' },
+                { name: 'Skill Creator', slug: 'skill-creator', desc: 'Create or update AgentSkills', icon: '馃洜锔?, source: 'official' },
+                { name: 'Gateway Restart', slug: 'gateway-restart', desc: 'OpenClaw Gateway 鏈嶅姟閲嶅惎', icon: '馃攧', source: 'original', author: '寮犳吹' },
+                { name: 'Cron Generator', slug: 'cron-generator', desc: 'Cron 琛ㄨ揪寮忕敓鎴愬櫒', icon: '鈴?, source: 'original', author: '寮犳吹' },
             ],
-            '系统 & 工具': [
-                { name: 'Capability Evolver', slug: 'capability-evolver', desc: 'A self-evolution engine for AI agents', icon: '🧬', source: 'original', author: '丑丑虾' },
-                { name: 'Task Monitor', slug: 'task-monitor', desc: 'Real-time web dashboard for OpenClaw sessions', icon: '📈', source: 'original', author: '丑丑虾' },
-                { name: 'Conversation Save', slug: 'conversation-save', desc: '对话存档技能', icon: '💾', source: 'original', author: '丑丑虾' },
-                { name: 'Feishu', slug: 'feishu', desc: '飞书集成工具', icon: '📋', source: 'community' },
-                { name: 'Swap', slug: 'swap', desc: '技能交换功能', icon: '🔀', source: 'original', author: '丑丑虾' },
+            '绯荤粺 & 宸ュ叿': [
+                { name: 'Capability Evolver', slug: 'capability-evolver', desc: 'AI agents 鑷垜杩涘寲寮曟搸', icon: '馃К', source: 'original', author: '寮犳吹' },
+                { name: 'Task Monitor', slug: 'task-monitor', desc: 'OpenClaw 浼氳瘽瀹炴椂鐩戞帶', icon: '馃搱', source: 'original', author: '寮犳吹' },
+                { name: 'Swap', slug: 'swap', desc: '鎶€鑳戒氦鎹㈠钩鍙?, icon: '馃攧', source: 'original', author: '寮犳吹' },
+                { name: 'Self Improving Agent', slug: 'self-improving-agent', desc: '鑷垜鏀硅繘寮曟搸', icon: '馃', source: 'original', author: '寮犳吹' },
+                { name: 'Skill Auditor', slug: 'skill-auditor', desc: '鎶€鑳借川閲忓璁?, icon: '馃攳', source: 'original', author: '寮犳吹' },
+                { name: 'Skill Radar', slug: 'skill-radar', desc: '鐑棬鎶€鑳界洃鎺ф帹鑽?, icon: '馃摗', source: 'original', author: '寮犳吹' },
+                { name: 'Find Skills', slug: 'find-skills', desc: '鎼滅储鍜屽畨瑁呮妧鑳?, icon: '馃攷', source: 'original', author: '寮犳吹' },
+            ],
+            '椋炰功闆嗘垚': [
+                { name: 'Feishu Auto Reply', slug: 'feishu-auto-reply', desc: '椋炰功鑷姩鍥炲', icon: '馃', source: 'original', author: '寮犳吹' },
+                { name: 'Feishu Bitable Upload', slug: 'feishu-bitable-upload', desc: '椋炰功澶氱淮琛ㄦ牸闄勪欢涓婁紶', icon: '馃摛', source: 'original', author: '寮犳吹' },
+                { name: 'Feishu Card', slug: 'feishu-card', desc: '椋炰功瀵屾枃鏈崱鐗?, icon: '馃幋', source: 'original', author: '寮犳吹' },
+                { name: 'Feishu Interactive Card', slug: 'feishu-interactive-card', desc: '椋炰功浜や簰寮忓崱鐗?, icon: '馃幆', source: 'original', author: '寮犳吹' },
+                { name: 'Feishu Create Doc', slug: 'feishu-create-doc', desc: '椋炰功鏂囨。鍒涘缓', icon: '馃摑', source: 'original', author: '寮犳吹' },
+                { name: 'Feishu Common', slug: 'feishu-common', desc: '椋炰功閫氱敤宸ュ叿', icon: '馃敡', source: 'original', author: '寮犳吹' },
+            ],
+            '鍐呭 & 鎼滅储': [
+                { name: 'Content Extract', slug: 'content-extract', desc: '缃戦〉鍐呭鎻愬彇杞琈arkdown', icon: '馃搫', source: 'original', author: '寮犳吹' },
+                { name: 'DDG Web Search', slug: 'ddg-web-search', desc: 'DuckDuckGo鎼滅储(鏃犻渶API key)', icon: '馃攳', source: 'original', author: '寮犳吹' },
+                { name: 'Search Layer', slug: 'search-layer', desc: '澶氭簮鎼滅储鑱氬悎灞?, icon: '馃攷', source: 'original', author: '寮犳吹' },
+                { name: 'MinerU Extract', slug: 'mineru-extract', desc: 'MinerU楂樿川閲忔枃妗ｈВ鏋?, icon: '鉀忥笍', source: 'original', author: '寮犳吹' },
+            ],
+            '椤圭洰绠＄悊': [
+                { name: 'Project Manager', slug: 'project-manager', desc: '椤圭洰绠＄悊宸ュ叿', icon: '馃搵', source: 'original', author: '寮犳吹' },
+                { name: 'TodoList Manager', slug: 'todolist-manager', desc: '涓汉寰呭姙娓呭崟', icon: '鉁?, source: 'original', author: '寮犳吹' },
+                { name: 'Interview Tracker', slug: 'interview-tracker', desc: '瀹㈡埛鎷滆璁胯皥杩借釜', icon: '馃摑', source: 'original', author: '寮犳吹' },
+            ],
+            '寮€鍙戞渶浣冲疄璺?: [
+                { name: 'Vercel React Best Practices', slug: 'vercel-react-best-practices', desc: 'React/Next.js鎬ц兘浼樺寲', icon: '鈿涳笍', source: 'community' },
+                { name: 'Vercel Composition Patterns', slug: 'vercel-composition-patterns', desc: 'React缁勪欢璁捐妯″紡', icon: '馃帹', source: 'community' },
+                { name: 'Web Design Guidelines', slug: 'web-design-guidelines', desc: 'Web UI璁捐瑙勮寖瀹℃煡', icon: '馃帹', source: 'community' },
+            ],
+            '鍏朵粬宸ュ叿': [
+                { name: 'Edge TTS', slug: 'edge-tts', desc: '鏂囧瓧杞闊?, icon: '馃棧锔?, source: 'original', author: '寮犳吹' },
+                { name: 'PDF Generator', slug: 'pdf-generator', desc: 'Markdown鐢熸垚PDF', icon: '馃搫', source: 'community' },
             ],
         };
 
-        const sourceLabels = { official: '官方', original: '原创', community: '社区' };
+
+
+        const sourceLabels = { official: '瀹樻柟', original: '鍘熷垱', community: '绀惧尯' };
         const content = document.getElementById('content');
 
         Object.entries(skills).forEach(([category, items]) => {
@@ -559,8 +595,8 @@ version: 1.0.0
                     </div>
                     <div class="card-desc">${skill.desc}</div>
                     <div class="card-actions">
-                        <a href="https://github.com/zhangxun057/openclaw-skills/tree/master/skills/${skill.slug}" target="_blank" class="btn btn-primary">查看</a>
-                        <a href="https://raw.githubusercontent.com/zhangxun057/openclaw-skills/master/skills/${skill.slug}/SKILL.md" target="_blank" class="btn btn-secondary">下载</a>
+                        <a href="https://github.com/zhangxun057/openclaw-skills/tree/master/skills/${skill.slug}" target="_blank" class="btn btn-primary">鏌ョ湅</a>
+                        <a href="https://raw.githubusercontent.com/zhangxun057/openclaw-skills/master/skills/${skill.slug}/SKILL.md" target="_blank" class="btn btn-secondary">涓嬭浇</a>
                     </div>
                 `;
                 
@@ -599,9 +635,9 @@ version: 1.0.0
                         item.innerHTML = `
                             <div class="pending-item-info">
                                 <div class="pending-item-name">${skillName}</div>
-                                <div class="pending-item-meta">提交于 ${date}</div>
+                                <div class="pending-item-meta">鎻愪氦浜?${date}</div>
                             </div>
-                            <a href="${issue.html_url}" target="_blank" class="btn btn-secondary" style="flex: 0 0 auto; padding: 8px 16px; font-size: 13px;">查看详情</a>
+                            <a href="${issue.html_url}" target="_blank" class="btn btn-secondary" style="flex: 0 0 auto; padding: 8px 16px; font-size: 13px;">鏌ョ湅璇︽儏</a>
                         `;
                         
                         pendingList.appendChild(item);
@@ -620,7 +656,7 @@ version: 1.0.0
             const btn = document.getElementById('submitBtn');
             const result = document.getElementById('submitResult');
             btn.disabled = true;
-            btn.textContent = '提交中...';
+            btn.textContent = '鎻愪氦涓?..';
             result.innerHTML = '';
             
             try {
@@ -638,18 +674,19 @@ version: 1.0.0
                 const data = await response.json();
                 
                 if (response.ok) {
-                    result.innerHTML = `<div class="alert alert-success">✅ 提交成功！Issue #${data.issueNumber} 已创建。<a href="${data.issueUrl}" target="_blank" style="color: #4ade80; text-decoration: underline;">查看</a></div>`;
+                    result.innerHTML = `<div class="alert alert-success">鉁?鎻愪氦鎴愬姛锛両ssue #${data.issueNumber} 宸插垱寤恒€?a href="${data.issueUrl}" target="_blank" style="color: #4ade80; text-decoration: underline;">鏌ョ湅</a></div>`;
                     document.getElementById('submitForm').reset();
                 } else {
-                    result.innerHTML = `<div class="alert alert-error">❌ ${data.error || data.message || '提交失败'}</div>`;
+                    result.innerHTML = `<div class="alert alert-error">鉂?${data.error || data.message || '鎻愪氦澶辫触'}</div>`;
                 }
             } catch (error) {
-                result.innerHTML = `<div class="alert alert-error">❌ 网络错误，请重试</div>`;
+                result.innerHTML = `<div class="alert alert-error">鉂?缃戠粶閿欒锛岃閲嶈瘯</div>`;
             } finally {
                 btn.disabled = false;
-                btn.textContent = '提交技能';
+                btn.textContent = '鎻愪氦鎶€鑳?;
             }
         });
     </script>
 </body>
 </html>
+
