@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenClaw Skills - 寮犳吹鐨勬妧鑳藉簱</title>
+    <style>
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* 鑳屾櫙缃戞牸 */
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        /* 娓愬彉鍏夋檿 */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+        
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 10px 30px rgba(255,107,53,0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .logo-text {
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff 0%, #ff6b35 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            color: #888;
+            margin-bottom: 28px;
+            font-weight: 400;
+        }
+        
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+        }
+        
+        .github-link:hover {
+            box-shadow: 0 8px 25px rgba(255,107,53,0.5);
+            transform: translateY(-2px);
+        }
+        
+        .github-icon {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* Search */
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 56px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 18px 24px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 14px;
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            background: rgba(255,255,255,0.08);
+            border-color: #ff6b35;
+            box-shadow: 0 0 0 3px rgba(255,107,53,0.1);
+        }
+        
+        .search-input::placeholder {
+            color: #555;
+        }
+        
+        /* Category */
+        .category {
+            margin-bottom: 56px;
+        }
+        
+        .category-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            padding-left: 6px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Card */
+        .card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .card:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: #ff6b35;
+            transform: translateY(-6px);
+            box-shadow: 0 15px 40px rgba(255,107,53,0.25);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover .card-icon {
+            transform: scale(1.15) rotate(5deg);
+        }
+        
+        .icon-official { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); box-shadow: 0 4px 15px rgba(59,130,246,0.3); }
+        .icon-original { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); box-shadow: 0 4px 15px rgba(255,107,53,0.3); }
+        .icon-community { background: linear-gradient(135deg, #64748b 0%, #475569 100%); box-shadow: 0 4px 15px rgba(100,116,139,0.3); }
+        
+        .card-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+        
+        .card-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid;
+        }
+        
+        .badge-official { background: rgba(59,130,246,0.12); color: #60a5fa; border-color: rgba(59,130,246,0.25); }
+        .badge-original { background: rgba(255,107,53,0.12); color: #ff8a65; border-color: rgba(255,107,53,0.25); }
+        .badge-community { background: rgba(100,116,139,0.12); color: #94a3b8; border-color: rgba(100,116,139,0.25); }
+        
+        .card-desc {
+            font-size: 14px;
+            color: #999;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 44px;
+        }
+        
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 11px 16px;
+            border-radius: 11px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: #fff;
+            box-shadow: 0 2px 10px rgba(255,107,53,0.3);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #ff5722 0%, #e67e22 100%);
+            box-shadow: 0 4px 15px rgba(255,107,53,0.5);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            color: #ccc;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border-color: rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="bg-glow"></div>
+    
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">馃</div>
+                <div class="logo-text">OpenClaw Skills</div>
+            </div>
+            <div class="subtitle">21 涓己澶ф妧鑳斤紝璁?AI 鍔╂墜鏃犳墍涓嶈兘</div>
+            <a href="https://github.com/zhangxun057/openclaw-skills" target="_blank" class="github-link">
+                <svg class="github-icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                鏌ョ湅婧愮爜
+            </a>
+        </div>
+
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="鎼滅储鎶€鑳?.." id="search">
+        </div>
+
+        <div id="content"></div>
+    </div>
+
+    <script>
+        const skills = {
+            'AI & 鍥惧儚': [
+                { name: 'Agent Tools', slug: 'agent-tools', desc: 'Run 150+ AI apps via inference.sh CLI - image generation, video, LLMs, search', icon: '馃', source: 'community' },
+                { name: 'AI Image Generation', slug: 'ai-image-generation', desc: 'AI鍥惧儚鐢熸垚宸ュ叿闆嗘垚', icon: '馃帹', source: 'community' },
+                { name: 'Flux Image', slug: 'flux-image', desc: 'Flux 鍥惧儚鐢熸垚', icon: '鉁?, source: 'community' },
+                { name: 'AI Product Photography', slug: 'ai-product-photography', desc: 'AI浜у搧鎽勫奖', icon: '馃摳', source: 'community' },
+            ],
+            '瑙嗛 & 鏁板瓧浜?: [
+                { name: 'AI Marketing Videos', slug: 'ai-marketing-videos', desc: 'AI钀ラ攢瑙嗛鐢熸垚', icon: '馃幀', source: 'community' },
+                { name: 'AI Video Generation', slug: 'ai-video-generation', desc: 'AI瑙嗛鐢熸垚宸ュ叿', icon: '馃帴', source: 'community' },
+                { name: 'Remotion Render', slug: 'remotion-render', desc: 'Remotion 瑙嗛娓叉煋', icon: '馃帪锔?, source: 'community' },
+                { name: 'Jimeng Digital Human', slug: 'jimeng-digital-human', desc: '鍗虫ⅵ鏁板瓧浜?, icon: '馃懁', source: 'community' },
+            ],
+            '寰俊 & 绀句氦': [
+                { name: 'WeChat Analyzer', slug: 'wechat-analyzer', desc: '寰俊濂藉弸鑷姩鍖栧垎鏋愪笌妗ｆ鐢熸垚宸ュ叿', icon: '馃搳', source: 'original' },
+                { name: 'WeFlow', slug: 'weflow', desc: 'WeFlow 寰俊鑱婂ぉ璁板綍宸ュ叿闆嗘垚', icon: '馃挰', source: 'original' },
+                { name: 'WeChat Send Message', slug: 'wechat-send-message', desc: '寰俊娑堟伅鍙戦€?, icon: '馃摛', source: 'original' },
+                { name: 'Baoyu Post to WeChat', slug: 'baoyu-post-to-wechat', desc: '瀹濈帀鍙戝竷鍒板井淇?, icon: '馃摑', source: 'community' },
+            ],
+            '寮€鍙?& 閮ㄧ讲': [
+                { name: 'Browser Automation', slug: 'browser-automation', desc: 'OpenClaw 娴忚鍣ㄨ嚜鍔ㄥ寲鎿嶄綔', icon: '馃寪', source: 'original' },
+                { name: 'Cloudflare Deploy', slug: 'cloudflare-deploy', desc: 'Cloudflare Pages 鑷姩閮ㄧ讲閰嶇疆', icon: '鈽侊笍', source: 'original' },
+                { name: 'Skill Creator', slug: 'skill-creator', desc: 'Create or update AgentSkills', icon: '馃洜锔?, source: 'official' },
+                { name: 'Gateway Restart', slug: 'gateway-restart', desc: 'OpenClaw Gateway 鏈嶅姟閲嶅惎', icon: '馃攧', source: 'original' },
+            ],
+            '绯荤粺 & 宸ュ叿': [
+                { name: 'Capability Evolver', slug: 'capability-evolver', desc: 'A self-evolution engine for AI agents', icon: '馃К', source: 'original' },
+                { name: 'Task Monitor', slug: 'task-monitor', desc: 'Real-time web dashboard for OpenClaw sessions', icon: '馃搱', source: 'original' },
+                { name: 'Conversation Save', slug: 'conversation-save', desc: '瀵硅瘽瀛樻。鎶€鑳?, icon: '馃捑', source: 'original' },
+                { name: 'Feishu', slug: 'feishu', desc: '椋炰功闆嗘垚宸ュ叿', icon: '馃搵', source: 'community' },
+                { name: 'Swap', slug: 'swap', desc: '鎶€鑳戒氦鎹㈠姛鑳?, icon: '馃攢', source: 'original' },
+            ],
+        };
+
+        const sourceLabels = { official: '瀹樻柟', original: '鍘熷垱', community: '绀惧尯' };
+        const content = document.getElementById('content');
+
+        Object.entries(skills).forEach(([category, items]) => {
+            const section = document.createElement('div');
+            section.className = 'category';
+            
+            const title = document.createElement('div');
+            title.className = 'category-title';
+            title.textContent = category;
+            section.appendChild(title);
+            
+            const grid = document.createElement('div');
+            grid.className = 'grid';
+            
+            items.forEach(skill => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.setAttribute('data-skill', '');
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-icon icon-${skill.source}">${skill.icon}</div>
+                        <div class="card-info">
+                            <div class="card-title">${skill.name}</div>
+                            <span class="card-badge badge-${skill.source}">${sourceLabels[skill.source]}</span>
+                        </div>
+                    </div>
+                    <div class="card-desc">${skill.desc}</div>
+                    <div class="card-actions">
+                        <a href="https://github.com/zhangxun057/openclaw-skills/tree/master/skills/${skill.slug}" target="_blank" class="btn btn-primary">鏌ョ湅</a>
+                        <a href="https://raw.githubusercontent.com/zhangxun057/openclaw-skills/master/skills/${skill.slug}/SKILL.md" target="_blank" class="btn btn-secondary">涓嬭浇</a>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+            
+            section.appendChild(grid);
+            content.appendChild(section);
+        });
+
+        document.getElementById('search').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            document.querySelectorAll('[data-skill]').forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
