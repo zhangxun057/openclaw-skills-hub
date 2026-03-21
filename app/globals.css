@@ -1,14 +1,1 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #0f172a;
-  color: #fff;
-}
+body { font-family: sans-serif; padding: 20px; }
