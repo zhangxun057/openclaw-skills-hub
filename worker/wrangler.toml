@@ -1,10 +1,9 @@
-name = "openclaw-skills-hub-api"
-main = "worker/index.ts"
+name = "claw-skills-api"
+main = "index.js"
 compatibility_date = "2024-01-01"
 
-[env.production]
-name = "openclaw-skills-hub-api"
+[vars]
+SUBMIT_PASSWORD = "181818"
 
-# Secrets (set with wrangler secret put)
-# GITHUB_TOKEN = "your-github-token"
-# GITHUB_REPO = "zhangxun057/openclaw-skills"
+[env.production]
+name = "claw-skills-api"
