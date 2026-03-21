@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>OpenClaw Skills</title>
-</head>
-<body>
-  <h1>Skills Hub</h1>
-  <p>Loading...</p>
-</body>
-</html>
+export default function Home() {
+  return (
+    <div style={{ padding: 20, fontFamily: 'sans-serif' }}>
+      <h1>Skills Hub</h1>
+      <p>Loading...</p>
+    </div>
+  )
+}
