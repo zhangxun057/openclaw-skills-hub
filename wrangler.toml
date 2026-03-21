@@ -1,0 +1,9 @@
+name = "openclaw-skills-hub-api"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+SUBMIT_PASSWORD = "181818"
+
+[env.production]
+name = "openclaw-skills-hub-api"
