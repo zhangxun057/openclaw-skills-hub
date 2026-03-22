@@ -9,7 +9,7 @@
         
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: #0a0a0f;
+            background: #020617;
             color: #fff;
             line-height: 1.6;
             min-height: 100vh;
@@ -18,7 +18,7 @@
         .bg-pattern {
             position: fixed;
             inset: 0;
-            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
             background-size: 40px 40px;
             pointer-events: none;
             z-index: 0;
@@ -29,9 +29,9 @@
             top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 800px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%);
+            width: 1000px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
@@ -41,160 +41,275 @@
             z-index: 1;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 60px 24px 80px;
+            padding: 80px 24px 80px;
         }
         
-        .header { text-align: center; margin-bottom: 56px; }
+        .header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
         
-        .logo { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+        .logo-area {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
         
         .logo-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
-            border-radius: 18px;
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            box-shadow: 0 10px 30px rgba(255,107,53,0.4);
+            font-size: 36px;
+            box-shadow: 0 10px 40px rgba(249,115,22,0.4);
             animation: float 3s ease-in-out infinite;
         }
         
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
         
         .logo-text {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 900;
-            background: linear-gradient(135deg, #fff 0%, #ff6b35 100%);
+            background: linear-gradient(135deg, #fff 0%, #f97316 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        .subtitle { font-size: 18px; color: #888; margin-bottom: 28px; font-weight: 400; }
+        .subtitle {
+            font-size: 18px;
+            color: #94a3b8;
+            margin-bottom: 28px;
+            font-weight: 400;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-link {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover {
+            background: rgba(249,115,22,0.1);
+            border-color: rgba(249,115,22,0.3);
+            color: #fff;
+        }
+        
+        .nav-link.active {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            border-color: transparent;
+            color: #fff;
+        }
         
         .github-link {
             display: inline-flex;
             align-items: center;
             gap: 10px;
             padding: 12px 24px;
-            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
             color: #fff;
             text-decoration: none;
             border-radius: 12px;
             font-weight: 600;
             font-size: 14px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255,107,53,0.3);
+            box-shadow: 0 4px 15px rgba(249,115,22,0.3);
         }
         
-        .github-link:hover { box-shadow: 0 8px 25px rgba(255,107,53,0.5); transform: translateY(-2px); }
+        .github-link:hover {
+            box-shadow: 0 8px 25px rgba(249,115,22,0.5);
+            transform: translateY(-2px);
+        }
+        
         .github-icon { width: 18px; height: 18px; }
         
-        .search-box { max-width: 600px; margin: 0 auto 56px; }
+        .search-box { max-width: 600px; margin: 0 auto 40px; }
         
         .search-input {
             width: 100%;
-            padding: 18px 24px;
-            background: rgba(255,255,255,0.04);
+            padding: 16px 24px;
+            background: rgba(15,23,42,0.8);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
             border-radius: 14px;
             color: #fff;
-            font-size: 16px;
+            font-size: 15px;
             outline: none;
             transition: all 0.3s ease;
         }
         
-        .search-input:focus { background: rgba(255,255,255,0.08); border-color: #ff6b35; box-shadow: 0 0 0 3px rgba(255,107,53,0.1); }
-        .search-input::placeholder { color: #555; }
-        
-        .category { margin-bottom: 56px; }
-        
-        .category-title {
-            font-size: 13px;
-            font-weight: 700;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            padding-left: 6px;
+        .search-input:focus {
+            background: rgba(15,23,42,0.95);
+            border-color: #f97316;
+            box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
         }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .search-input::placeholder { color: #64748b; }
+        
+        .category { margin-bottom: 48px; }
+        
+        .category-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            padding-left: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
+        }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
         
         .card {
-            background: rgba(255,255,255,0.03);
+            background: rgba(15,23,42,0.6);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 18px;
-            padding: 24px;
+            border-radius: 16px;
+            padding: 20px;
             transition: all 0.3s ease;
         }
         
         .card:hover {
-            background: rgba(255,255,255,0.06);
-            border-color: #ff6b35;
-            transform: translateY(-6px);
-            box-shadow: 0 15px 40px rgba(255,107,53,0.25);
+            background: rgba(15,23,42,0.9);
+            border-color: rgba(249,115,22,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(249,115,22,0.1);
         }
         
-        .card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
         
         .card-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 22px;
             flex-shrink: 0;
             transition: transform 0.3s ease;
         }
         
-        .card:hover .card-icon { transform: scale(1.15) rotate(5deg); }
+        .card:hover .card-icon { transform: scale(1.1) rotate(5deg); }
         
-        .icon-official { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); box-shadow: 0 4px 15px rgba(59,130,246,0.3); }
-        .icon-original { background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%); box-shadow: 0 4px 15px rgba(255,107,53,0.3); }
-        .icon-community { background: linear-gradient(135deg, #64748b 0%, #475569 100%); box-shadow: 0 4px 15px rgba(100,116,139,0.3); }
+        .icon-official { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); box-shadow: 0 4px 12px rgba(59,130,246,0.3); }
+        .icon-原创 { background: linear-gradient(135deg, #f97316 0%, #c2410c 100%); box-shadow: 0 4px 12px rgba(249,115,22,0.3); }
+        .icon-社区 { background: linear-gradient(135deg, #475569 0%, #334155 100%); box-shadow: 0 4px 12px rgba(71,85,105,0.3); }
+        .icon-skills.sh { background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); box-shadow: 0 4px 12px rgba(139,92,246,0.3); }
+        .icon-clawhub { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); box-shadow: 0 4px 12px rgba(6,182,212,0.3); }
+        .icon-虾评Skill { background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); box-shadow: 0 4px 12px rgba(236,72,153,0.3); }
         
         .card-info { flex: 1; min-width: 0; }
         
-        .card-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+        .card-title-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        
+        .card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #f1f5f9;
+            line-height: 1.3;
+        }
+        
+        .card-version {
+            font-size: 11px;
+            color: #64748b;
+            background: rgba(255,255,255,0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
         
         .card-badge {
             display: inline-block;
-            padding: 4px 12px;
-            border-radius: 8px;
+            padding: 3px 10px;
+            border-radius: 6px;
             font-size: 11px;
             font-weight: 600;
             border: 1px solid;
         }
         
-        .badge-official { background: rgba(59,130,246,0.12); color: #60a5fa; border-color: rgba(59,130,246,0.25); }
-        .badge-original { background: rgba(255,107,53,0.12); color: #ff8a65; border-color: rgba(255,107,53,0.25); }
-        .badge-community { background: rgba(100,116,139,0.12); color: #94a3b8; border-color: rgba(100,116,139,0.25); }
+        .badge-official { background: rgba(59,130,246,0.15); color: #60a5fa; border-color: rgba(59,130,246,0.3); }
+        .badge-原创 { background: rgba(249,115,22,0.15); color: #fb923c; border-color: rgba(249,115,22,0.3); }
+        .badge-社区 { background: rgba(71,85,105,0.15); color: #94a3b8; border-color: rgba(71,85,105,0.3); }
+        .badge-skills.sh { background: rgba(139,92,246,0.15); color: #a78bfa; border-color: rgba(139,92,246,0.3); }
+        .badge-clawhub { background: rgba(6,182,212,0.15); color: #22d3ee; border-color: rgba(6,182,212,0.3); }
+        .badge-虾评Skill { background: rgba(236,72,153,0.15); color: #f472b6; border-color: rgba(236,72,153,0.3); }
+        
+        .card-author {
+            font-size: 11px;
+            color: #64748b;
+        }
+        
+        .card-rating {
+            font-size: 12px;
+            color: #fbbf24;
+            letter-spacing: -2px;
+        }
         
         .card-desc {
-            font-size: 14px;
-            color: #999;
+            font-size: 13px;
+            color: #94a3b8;
             line-height: 1.6;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            min-height: 44px;
+            min-height: 42px;
         }
         
-        .card-actions { display: flex; gap: 10px; }
+        .card-actions { display: flex; gap: 8px; }
         
         .btn {
             flex: 1;
-            padding: 11px 16px;
-            border-radius: 11px;
-            font-size: 14px;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 13px;
             font-weight: 600;
             text-align: center;
             text-decoration: none;
@@ -205,48 +320,56 @@
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
             color: #fff;
-            box-shadow: 0 2px 10px rgba(255,107,53,0.3);
+            box-shadow: 0 2px 10px rgba(249,115,22,0.3);
         }
         
-        .btn-primary:hover { background: linear-gradient(135deg, #ff5722 0%, #e67e22 100%); transform: translateY(-1px); }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+            box-shadow: 0 4px 15px rgba(249,115,22,0.5);
+            transform: translateY(-1px);
+        }
         
         .btn-secondary {
             background: rgba(255,255,255,0.05);
-            color: #ccc;
-            border: 1px solid rgba(255,255,255,0.12);
+            color: #94a3b8;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
-        .btn-secondary:hover { background: rgba(255,255,255,0.1); color: #fff; }
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border-color: rgba(255,255,255,0.2);
+        }
         
-        .loading { text-align: center; padding: 60px; color: #666; font-size: 16px; }
+        .loading { text-align: center; padding: 60px; color: #64748b; font-size: 16px; }
         
         .error {
             text-align: center;
             padding: 40px;
-            color: #ff6b35;
-            background: rgba(255,107,53,0.1);
+            color: #f97316;
+            background: rgba(249,115,22,0.1);
             border-radius: 12px;
             margin: 20px;
         }
         
         .refresh-btn {
             display: inline-block;
-            margin-left: 20px;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
+            margin-left: 16px;
+            padding: 8px 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 8px;
-            color: #888;
+            color: #64748b;
             font-size: 14px;
             cursor: pointer;
             transition: all 0.2s;
         }
         
-        .refresh-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+        .refresh-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
         
-        .cache-note { font-size: 12px; color: #666; margin-top: 8px; }
+        .cache-note { font-size: 12px; color: #64748b; margin-top: 8px; }
     </style>
 </head>
 <body>
@@ -255,7 +378,7 @@
     
     <div class="container">
         <div class="header">
-            <div class="logo">
+            <div class="logo-area">
                 <div class="logo-icon">🦞</div>
                 <div class="logo-text">OpenClaw Skills</div>
             </div>
@@ -264,6 +387,21 @@
                 <button class="refresh-btn" onclick="loadSkills(true)" title="刷新技能列表">🔄</button>
             </div>
             <div class="cache-note" id="cache-note"></div>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-category="all">全部</a>
+                <a href="#" class="nav-link" data-category="飞书生态">飞书生态</a>
+                <a href="#" class="nav-link" data-category="微信生态">微信生态</a>
+                <a href="#" class="nav-link" data-category="项目开发">项目开发</a>
+                <a href="#" class="nav-link" data-category="系统工具">系统工具</a>
+                <a href="#" class="nav-link" data-category="技能管理">技能管理</a>
+                <a href="#" class="nav-link" data-category="效率工具">效率工具</a>
+                <a href="#" class="nav-link" data-category="目标管理">目标管理</a>
+                <a href="#" class="nav-link" data-category="内容生成">内容生成</a>
+                <a href="#" class="nav-link" data-category="AI & 图像">AI & 图像</a>
+                <a href="#" class="nav-link" data-category="视频 & 数字人">视频 & 数字人</a>
+                <a href="#" class="nav-link" data-category="龙虾进化">龙虾进化</a>
+                <a href="#" class="nav-link" data-category="业务运营">业务运营</a>
+            </div>
             <a href="https://github.com/zhangxun057/openclaw-skills" target="_blank" class="github-link">
                 <svg class="github-icon" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -273,7 +411,7 @@
         </div>
 
         <div class="search-box">
-            <input type="text" class="search-input" placeholder="搜索技能..." id="search">
+            <input type="text" class="search-input" placeholder="搜索技能... (Agent可直接复制名称)" id="search">
         </div>
 
         <div id="content">
@@ -283,65 +421,15 @@
 
     <script>
         const GITHUB_REPO = 'zhangxun057/openclaw-skills';
-        const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/contents/skills`;
+        const SKILLS_API = `https://api.github.com/repos/${GITHUB_REPO}/contents/skilllist.json`;
+        const SKILLS_DIR_API = `https://api.github.com/repos/${GITHUB_REPO}/contents/skills`;
         
-        const CACHE_KEY = 'openclaw_skills_cache';
-        const CACHE_DURATION = 60 * 60 * 1000; // 1小时缓存
+        const CACHE_KEY = 'openclaw_skills_cache_v2';
+        const CACHE_DURATION = 60 * 60 * 1000;
         
-        // 备用静态数据（API 失败时使用）
-        const FALLBACK_SKILLS = [
-            { name: 'feishu-bitable', category: '飞书生态', icon: '📋', source: 'community', desc: '飞书多维表格管理' },
-            { name: 'feishu-calendar', category: '飞书生态', icon: '📅', source: 'community', desc: '飞书日历与日程管理' },
-            { name: 'feishu-im-read', category: '飞书生态', icon: '💬', source: 'community', desc: '飞书消息读取工具' },
-            { name: 'feishu-task', category: '飞书生态', icon: '✅', source: 'community', desc: '飞书任务管理' },
-            { name: 'wechat-analyzer', category: '微信 & 社交', icon: '📊', source: 'community', desc: '微信好友分析与档案生成' },
-            { name: 'weflow', category: '微信 & 社交', icon: '💬', source: 'community', desc: '微信聊天记录工具集成' },
-            { name: 'wechat-send-message', category: '微信 & 社交', icon: '📤', source: 'community', desc: 'macOS微信发送消息' },
-            { name: 'browser-automation', category: '开发 & 部署', icon: '🌐', source: 'official', desc: 'OpenClaw 浏览器自动化操作' },
-            { name: 'cloudflare-deploy', category: '开发 & 部署', icon: '☁️', source: 'community', desc: 'Cloudflare Pages 自动部署' },
-            { name: 'skill-creator', category: '技能管理', icon: '🛠️', source: 'official', desc: '创建和管理 AgentSkills' },
-            { name: 'gateway-restart', category: '系统 & 工具', icon: '🔄', source: 'official', desc: 'OpenClaw Gateway 服务重启' },
-            { name: 'capability-evolver', category: '系统 & 工具', icon: '🧬', source: 'community', desc: 'AI 代理自进化引擎' },
-            { name: 'task-monitor', category: '系统 & 工具', icon: '📈', source: 'community', desc: '实时 Web 仪表板' },
-            { name: 'todolist-manager', category: '效率工具', icon: '✅', source: 'community', desc: '个人待办清单管理' },
-            { name: 'skill-radar', category: '技能管理', icon: '📡', source: 'community', desc: '技能市场雷达' },
-            { name: 'skill-auditor', category: '技能管理', icon: '🔎', source: 'community', desc: '技能质量审计' },
-            { name: 'swap', category: '技能管理', icon: '🔀', source: 'community', desc: '技能交换功能' },
-            { name: 'content-extract', category: '内容生成', icon: '📥', source: 'community', desc: 'URL 内容提取' },
-            { name: 'pdf-generator', category: '内容生成', icon: '📄', source: 'community', desc: 'PDF 生成工具' },
-            { name: 'project-manager', category: '目标管理', icon: '📁', source: 'community', desc: '项目管理工具' },
-        ];
+        let skillMetadata = {};
+        let allSkills = [];
         
-        const CATEGORY_RULES = {
-            'AI & 图像': ['ai-', 'image', 'vision', 'tts', 'audio', 'photo', 'flux', 'seedream', 'edge'],
-            '视频 & 数字人': ['video', 'digital-human', 'jimeng', 'remotion', 'marking'],
-            '微信 & 社交': ['wechat', 'weflow', 'weixin', 'wx', 'social', 'baoyu'],
-            '飞书生态': ['feishu', 'lark', '飞书'],
-            '开发 & 部署': ['deploy', 'cloudflare', 'vercel', 'browser', 'automation', 'dev'],
-            '系统 & 工具': ['gateway', 'task', 'monitor', 'system', 'cron'],
-            '效率工具': ['diary', 'todolist', 'todo', 'brainstorm', 'note', 'interview'],
-            '技能管理': ['skill', 'swap', 'find', 'radar', 'auditor', 'creator', 'self-improving'],
-            '内容生成': ['content', '生成', '写作', 'write', 'extract', 'pdf'],
-            '目标管理': ['goal', '目标', '计划', 'project']
-        };
-        
-        const SOURCE_KEYWORDS = {
-            official: ['openclaw', '官方'],
-            original: ['原创', 'zhangxun', '张洵']
-        };
-        
-        const ICON_MAP = {
-            'feishu': '📋', 'wechat': '💬', 'wechat-analyzer': '📊', 'weflow': '💬',
-            'wechat-send-message': '📤', 'browser-automation': '🌐', 'cloudflare-deploy': '☁️',
-            'skill-creator': '🛠️', 'gateway-restart': '🔄', 'capability-evolver': '🧬',
-            'task-monitor': '📈', 'swap': '🔀', 'todolist-manager': '✅',
-            'skill-radar': '📡', 'skill-auditor': '🔎', 'content-extract': '📥',
-            'pdf-generator': '📄', 'project-manager': '📁', 'diary-assistant': '📔',
-            'jimeng-digital-human': '👤', 'edge-tts': '🔊', 'image-generation': '🎨',
-            'seedream': '🏞️', 'news-aggregator': '📰', 'find-skills': '🔍'
-        };
-        
-        // 缓存管理
         function getCache() {
             try {
                 const cached = localStorage.getItem(CACHE_KEY);
@@ -355,34 +443,35 @@
             return null;
         }
         
-        function setCache(skills) {
+        function setCache(data) {
             try {
                 localStorage.setItem(CACHE_KEY, JSON.stringify({
-                    skills: skills,
+                    metadata: data.metadata,
+                    skills: data.skills,
                     timestamp: Date.now()
                 }));
             } catch (e) {}
         }
         
-        function getCategory(slug) {
-            slug = slug.toLowerCase();
-            for (const [category, keywords] of Object.entries(CATEGORY_RULES)) {
-                for (const kw of keywords) {
-                    if (slug.includes(kw.toLowerCase())) return category;
-                }
-            }
-            return '其他工具';
+        function getSourceClass(source) {
+            const map = {
+                '官方': 'official',
+                '原创': '原创',
+                '社区': '社区',
+                'skills.sh': 'skills.sh',
+                'clawhub': 'clawhub',
+                '虾评Skill': '虾评Skill',
+                '飞书官方': 'official'
+            };
+            return map[source] || '社区';
         }
         
-        function getIcon(slug) {
-            return ICON_MAP[slug] || '🔧';
+        function getRatingStars(rating) {
+            return '★'.repeat(rating || 0) + '☆'.repeat(5 - (rating || 0));
         }
         
-        function getSource(slug, description) {
-            const text = (slug + ' ' + (description || '')).toLowerCase();
-            if (SOURCE_KEYWORDS.official.some(kw => text.includes(kw.toLowerCase()))) return 'official';
-            if (SOURCE_KEYWORDS.original.some(kw => text.includes(kw.toLowerCase()))) return 'original';
-            return 'community';
+        function formatName(slug) {
+            return slug.split(/[-_]/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
         }
         
         async function fetchSkillDescription(slug) {
@@ -394,7 +483,6 @@
                 if (!response.ok) return '';
                 const data = await response.json();
                 if (data.content) {
-                    // 正确解码 UTF-8 中文
                     const binary = atob(data.content);
                     const bytes = new Uint8Array(binary.length);
                     for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
@@ -405,7 +493,7 @@
                     for (const line of lines) {
                         const trimmed = line.trim();
                         if (trimmed && !trimmed.startsWith('#') && !trimmed.startsWith('---')) {
-                            return trimmed.replace(/^[-*>]+\s*/, '').substring(0, 100);
+                            return trimmed.replace(/^[-*>]+\s*/, '').substring(0, 120);
                         }
                     }
                 }
@@ -417,12 +505,13 @@
             const content = document.getElementById('content');
             const cacheNote = document.getElementById('cache-note');
             
-            // 尝试从缓存加载
             if (!forceRefresh) {
                 const cache = getCache();
                 if (cache) {
                     cacheNote.textContent = '📦 使用缓存 (1小时内有效)';
-                    renderSkillsOrganize(cache.skills);
+                    skillMetadata = cache.metadata;
+                    allSkills = cache.skills;
+                    renderSkills(allSkills);
                     return;
                 }
             }
@@ -430,80 +519,99 @@
             content.innerHTML = '<div class="loading">正在从 GitHub 加载技能列表...</div>';
             
             try {
-                const response = await fetch(GITHUB_API, { cache: 'no-store' });
-                if (!response.ok) throw new Error('API 限流或网络错误');
+                // 获取元数据
+                const metaResponse = await fetch(SKILLS_API, { cache: 'no-store' });
+                if (metaResponse.ok) {
+                    const metaData = await metaResponse.json();
+                    const binary = atob(metaData.content);
+                    const bytes = new Uint8Array(binary.length);
+                    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+                    const text = new TextDecoder('utf-8').decode(bytes);
+                    skillMetadata = JSON.parse(text);
+                }
                 
-                const items = await response.json();
+                // 获取技能目录
+                const dirResponse = await fetch(SKILLS_DIR_API, { cache: 'no-store' });
+                if (!dirResponse.ok) throw new Error('获取技能列表失败');
+                
+                const items = await dirResponse.json();
                 const skillDirs = items.filter(item => item.type === 'dir');
                 
-                // 获取描述（限制并发数）
+                // 并行获取描述
+                const batchSize = 8;
                 const skillsWithDesc = [];
-                const batchSize = 5;
+                
                 for (let i = 0; i < skillDirs.length; i += batchSize) {
                     const batch = skillDirs.slice(i, i + batchSize);
                     const results = await Promise.all(
                         batch.map(async (dir) => {
-                            const desc = await fetchSkillDescription(dir.name);
+                            const name = dir.name;
+                            const meta = skillMetadata[name] || {};
+                            const desc = await fetchSkillDescription(name);
                             return {
-                                name: dir.name,
-                                slug: dir.name,
-                                desc: desc || `查看 ${dir.name} 技能详情`,
-                                icon: getIcon(dir.name),
-                                source: getSource(dir.name, desc),
-                                category: getCategory(dir.name)
+                                name: name,
+                                slug: name,
+                                desc: desc || meta.description || `查看 ${name} 技能详情`,
+                                icon: meta.icon || '🔧',
+                                source: meta.source || '社区',
+                                category: meta.category || '其他',
+                                rating: meta.rating || 3,
+                                version: meta.version || '1.0.0',
+                                author: meta.author || '社区'
                             };
                         })
                     );
                     skillsWithDesc.push(...results);
                 }
                 
-                // 缓存结果
-                setCache(skillsWithDesc);
+                allSkills = skillsWithDesc;
+                setCache({ metadata: skillMetadata, skills: allSkills });
                 cacheNote.textContent = '✅ 已更新到最新';
                 
-                renderSkillsOrganize(skillsWithDesc);
+                renderSkills(allSkills);
                 
             } catch (error) {
                 console.error('加载失败:', error);
                 
-                // 尝试使用缓存
                 const cache = getCache();
                 if (cache) {
                     cacheNote.textContent = '⚠️ API 失败，使用缓存数据';
-                    renderSkillsOrganize(cache.skills);
+                    skillMetadata = cache.metadata;
+                    allSkills = cache.skills;
+                    renderSkills(allSkills);
                     return;
                 }
                 
-                // 使用备用数据
-                cacheNote.textContent = '⚠️ 使用离线数据';
-                const fallback = FALLBACK_SKILLS.map(s => ({
-                    ...s,
-                    category: s.category || getCategory(s.name)
-                }));
-                renderSkillsOrganize(fallback);
+                content.innerHTML = `<div class="error">加载失败: ${error.message}<br><br>请检查网络或稍后重试</div>`;
             }
         }
         
-        function renderSkillsOrganize(skills) {
+        function renderSkills(skills) {
+            const content = document.getElementById('content');
+            const sourceLabels = {
+                '官方': '官方',
+                '原创': '原创',
+                '社区': '社区',
+                'skills.sh': 'skills.sh',
+                'clawhub': 'clawhub',
+                '虾评Skill': '虾评',
+                '飞书官方': '飞书官方'
+            };
+            
+            const categoryOrder = [
+                '飞书生态', '微信生态', '项目开发', '系统工具', '技能管理',
+                '效率工具', '目标管理', '内容生成', 'AI & 图像', '视频 & 数字人', '龙虾进化', '业务运营', '其他'
+            ];
+            
+            // 按分类组织
             const categorized = {};
             for (const skill of skills) {
-                const cat = skill.category || getCategory(skill.slug || skill.name);
+                const cat = skill.category || '其他';
                 if (!categorized[cat]) categorized[cat] = [];
                 categorized[cat].push(skill);
             }
             
             document.getElementById('skill-count').textContent = skills.length;
-            renderSkills(categorized);
-        }
-        
-        function renderSkills(categorized) {
-            const content = document.getElementById('content');
-            const sourceLabels = { official: '官方', original: '原创', community: '社区' };
-            
-            const categoryOrder = [
-                'AI & 图像', '视频 & 数字人', '微信 & 社交', '飞书生态',
-                '开发 & 部署', '系统 & 工具', '效率工具', '技能管理', '内容生成', '目标管理', '其他工具'
-            ];
             
             let html = '';
             
@@ -511,23 +619,30 @@
                 const items = categorized[category];
                 if (!items || items.length === 0) continue;
                 
-                html += `<div class="category">
+                html += `<div class="category" data-category="${category}">
                     <div class="category-title">${category}</div>
                     <div class="grid">`;
                 
                 for (const skill of items) {
-                    const name = skill.slug || skill.name;
-                    html += `<div class="card" data-skill="">
+                    const sourceClass = getSourceClass(skill.source);
+                    html += `<div class="card" data-skill="${skill.name}" data-cat="${skill.category}">
                         <div class="card-header">
-                            <div class="card-icon icon-${skill.source}">${skill.icon}</div>
+                            <div class="card-icon icon-${sourceClass}">${skill.icon}</div>
                             <div class="card-info">
-                                <div class="card-title">${formatName(name)}</div>
-                                <span class="card-badge badge-${skill.source}">${sourceLabels[skill.source]}</span>
+                                <div class="card-title-row">
+                                    <div class="card-title">${formatName(skill.name)}</div>
+                                    <span class="card-version">v${skill.version}</span>
+                                </div>
+                                <div class="card-meta">
+                                    <span class="card-badge badge-${sourceClass}">${sourceLabels[skill.source] || skill.source}</span>
+                                    <span class="card-rating">${getRatingStars(skill.rating)}</span>
+                                    <span class="card-author">${skill.author || ''}</span>
+                                </div>
                             </div>
                         </div>
                         <div class="card-desc">${skill.desc}</div>
                         <div class="card-actions">
-                            <a href="https://github.com/${GITHUB_REPO}/tree/master/skills/${name}" target="_blank" class="btn btn-primary">查看</a>
+                            <a href="https://github.com/${GITHUB_REPO}/tree/master/skills/${skill.name}" target="_blank" class="btn btn-primary">查看</a>
                             <a href="https://github.com/${GITHUB_REPO}/archive/refs/heads/master.zip" download class="btn btn-secondary">下载</a>
                         </div>
                     </div>`;
@@ -539,15 +654,49 @@
             content.innerHTML = html || '<div class="error">没有找到技能</div>';
         }
         
-        function formatName(slug) {
-            return slug.split(/[-_]/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-        }
-        
+        // 搜索功能
         document.getElementById('search').addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
-            document.querySelectorAll('[data-skill]').forEach(card => {
+            document.querySelectorAll('.card').forEach(card => {
                 const text = card.textContent.toLowerCase();
                 card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+            
+            // 隐藏空的分类
+            document.querySelectorAll('.category').forEach(cat => {
+                const visibleCards = cat.querySelectorAll('.card[style="display: block"], .card:not([style*="display"])');
+                cat.style.display = visibleCards.length > 0 ? 'block' : 'none';
+            });
+        });
+        
+        // 分类筛选
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const category = link.dataset.category;
+                
+                // 更新激活状态
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                // 筛选
+                document.querySelectorAll('.card').forEach(card => {
+                    if (category === 'all' || card.dataset.cat === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // 显示/隐藏分类
+                document.querySelectorAll('.category').forEach(cat => {
+                    if (category === 'all') {
+                        cat.style.display = 'block';
+                    } else {
+                        const visibleCards = cat.querySelectorAll(`.card[data-cat="${category}"]`);
+                        cat.style.display = visibleCards.length > 0 ? 'block' : 'none';
+                    }
+                });
             });
         });
         
