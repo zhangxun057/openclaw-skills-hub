@@ -387,20 +387,20 @@
                 <button class="refresh-btn" onclick="loadSkills(true)" title="刷新技能列表">🔄</button>
             </div>
             <div class="cache-note" id="cache-note"></div>
-            <div class="nav-links">
-                <a href="#" class="nav-link active" data-category="all">全部</a>
-                <a href="#" class="nav-link" data-category="飞书生态">飞书生态</a>
-                <a href="#" class="nav-link" data-category="微信生态">微信生态</a>
-                <a href="#" class="nav-link" data-category="项目开发">项目开发</a>
-                <a href="#" class="nav-link" data-category="系统工具">系统工具</a>
-                <a href="#" class="nav-link" data-category="技能管理">技能管理</a>
-                <a href="#" class="nav-link" data-category="效率工具">效率工具</a>
-                <a href="#" class="nav-link" data-category="目标管理">目标管理</a>
-                <a href="#" class="nav-link" data-category="内容生成">内容生成</a>
-                <a href="#" class="nav-link" data-category="AI & 图像">AI & 图像</a>
-                <a href="#" class="nav-link" data-category="视频 & 数字人">视频 & 数字人</a>
-                <a href="#" class="nav-link" data-category="龙虾进化">龙虾进化</a>
-                <a href="#" class="nav-link" data-category="业务运营">业务运营</a>
+            <div class="nav-links" id="category-tabs">
+                <a href="#" class="nav-link active" data-category="all">全部（<span class="cat-count" data-cat="all">0</span>）</a>
+                <a href="#" class="nav-link" data-category="飞书生态">飞书（<span class="cat-count" data-cat="飞书生态">0</span>）</a>
+                <a href="#" class="nav-link" data-category="微信生态">微信（<span class="cat-count" data-cat="微信生态">0</span>）</a>
+                <a href="#" class="nav-link" data-category="项目开发">开发（<span class="cat-count" data-cat="项目开发">0</span>）</a>
+                <a href="#" class="nav-link" data-category="系统工具">系统（<span class="cat-count" data-cat="系统工具">0</span>）</a>
+                <a href="#" class="nav-link" data-category="技能管理">技能（<span class="cat-count" data-cat="技能管理">0</span>）</a>
+                <a href="#" class="nav-link" data-category="效率工具">效率（<span class="cat-count" data-cat="效率工具">0</span>）</a>
+                <a href="#" class="nav-link" data-category="目标管理">目标（<span class="cat-count" data-cat="目标管理">0</span>）</a>
+                <a href="#" class="nav-link" data-category="内容生成">内容（<span class="cat-count" data-cat="内容生成">0</span>）</a>
+                <a href="#" class="nav-link" data-category="AI & 图像">AI（<span class="cat-count" data-cat="AI & 图像">0</span>）</a>
+                <a href="#" class="nav-link" data-category="视频 & 数字人">视频（<span class="cat-count" data-cat="视频 & 数字人">0</span>）</a>
+                <a href="#" class="nav-link" data-category="龙虾进化">进化（<span class="cat-count" data-cat="龙虾进化">0</span>）</a>
+                <a href="#" class="nav-link" data-category="业务运营">运营（<span class="cat-count" data-cat="业务运营">0</span>）</a>
             </div>
             <div style="display: flex; gap: 12px; justify-content: center;">
                 <a href="#" onclick="document.getElementById('submit-modal').style.display='flex';return false;" class="github-link">
@@ -649,6 +649,20 @@
             
             document.getElementById('skill-count').textContent = skills.length;
             
+            // 更新分类计数
+            const catCounts = {};
+            for (const skill of skills) {
+                const cat = skill.category || '其他';
+                catCounts[cat] = (catCounts[cat] || 0) + 1;
+            }
+            // 更新全部计数
+            document.querySelector('.cat-count[data-cat="all"]').textContent = skills.length;
+            // 更新各分类计数
+            for (const [cat, count] of Object.entries(catCounts)) {
+                const el = document.querySelector(`.cat-count[data-cat="${cat}"]`);
+                if (el) el.textContent = count;
+            }
+            
             let html = '';
             
             for (const category of categoryOrder) {
@@ -789,6 +803,11 @@
                     <label style="display:block;color:#94a3b8;margin-bottom:6px;font-size:14px;">图标 (Emoji)</label>
                     <input type="text" name="icon" placeholder="如 📋" style="width:100%;padding:12px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#fff;font-size:14px;">
                 </div>
+                <div style="margin-bottom:16px;">
+                    <label style="display:block;color:#94a3b8;margin-bottom:6px;font-size:14px;">GitHub仓库地址</label>
+                    <input type="url" name="repoUrl" placeholder="https://github.com/xxx/xxx" style="width:100%;padding:12px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#fff;font-size:14px;">
+                    <div style="color:#64748b;font-size:12px;margin-top:4px;">填写技能代码的GitHub仓库地址</div>
+                </div>
                 <div style="margin-bottom:24px;">
                     <label style="display:block;color:#94a3b8;margin-bottom:6px;font-size:14px;">密码 *</label>
                     <input type="password" name="password" required style="width:100%;padding:12px;background:#0f172a;border:1px solid #334155;border-radius:8px;color:#fff;font-size:14px;">
@@ -818,7 +837,7 @@
         };
         result.innerHTML = '<span style="color:#fbbf24;">提交中...</span>';
         try {
-            const res = await fetch('https://skills-hub-v2.pages.dev/api/submit', {
+            const res = await fetch('https://claw-skills.pages.dev/api/submit', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data)
