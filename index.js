@@ -1,7 +1,6 @@
 // Cloudflare Worker for handling skill submissions
 
 const DEFAULT_PASSWORD = '181818';
-const GITHUB_TOKEN = ''; // 从环境变量获取
 const GITHUB_REPO = 'zhangxun057/openclaw-skills';
 
 export default {
@@ -24,9 +23,9 @@ export default {
       const contentType = request.headers.get('content-type') || '';
       
       if (contentType.includes('multipart/form-data')) {
-        return await handleMultipart(request, corsHeaders);
+        return await handleMultipart(request, corsHeaders, env);
       } else {
-        return await handleJson(request, corsHeaders);
+        return await handleJson(request, corsHeaders, env);
       }
     } catch (error) {
       return new Response(JSON.stringify({ 
@@ -37,15 +36,23 @@ export default {
   }
 };
 
-async function handleJson(request, corsHeaders) {
-  const { skillName, content, contributor, password, category, source, icon, repoUrl } = await request.json();
-  return await processSubmission({ skillName, content, contributor, password, category, source, icon, repoUrl }, corsHeaders);
+async function handleJson(request, corsHeaders, env) {
+  const data = await request.json();
+  const skillName = data.skillName || '';
+  const description = data.description || data.content || '';
+  const contributor = data.author || data.contributor || '';
+  const password = data.password || '';
+  const category = data.category || '';
+  const source = data.source || '社区';
+  const icon = data.icon || '🔧';
+  const repoUrl = data.repoUrl || '';
+  
+  return await processSubmission({ skillName, content: description, contributor, password, category, source, icon, repoUrl }, corsHeaders, env);
 }
 
-async function handleMultipart(request, corsHeaders) {
+async function handleMultipart(request, corsHeaders, env) {
   const formData = await request.formData();
   const password = formData.get('password');
-  
   const expectedPassword = DEFAULT_PASSWORD;
   if (password !== expectedPassword) {
     return new Response(JSON.stringify({ 
@@ -54,18 +61,17 @@ async function handleMultipart(request, corsHeaders) {
     }), { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
   }
 
-  const skillName = formData.get('skillName');
-  const description = formData.get('description');
-  const category = formData.get('category');
-  const source = formData.get('source');
-  const author = formData.get('author');
-  const icon = formData.get('icon');
-  const repoUrl = formData.get('repoUrl');
+  const skillName = formData.get('skillName')?.toString() || '';
+  const description = formData.get('description')?.toString() || '';
+  const category = formData.get('category')?.toString() || '';
+  const source = formData.get('source')?.toString() || '社区';
+  const author = formData.get('author')?.toString() || '匿名';
+  const icon = formData.get('icon')?.toString() || '🔧';
+  const repoUrl = formData.get('repoUrl')?.toString() || '';
   const skillFile = formData.get('skillFile');
 
-  let content = description || '';
-  let fileInfo = '';
-  
+  let content = description;
+  let fileInfo = '';  
   if (skillFile && skillFile.name) {
     const fileContent = await skillFile.text();
     fileInfo = `\n\n---\n📎 上传文件: ${skillFile.name}\n文件大小: ${skillFile.size} bytes`;
@@ -75,24 +81,32 @@ async function handleMultipart(request, corsHeaders) {
   }
 
   return await processSubmission({
-    skillName: skillName?.toString(),
+    skillName,
     content: content + fileInfo,
-    contributor: author?.toString() || '匿名',
-    category: category?.toString(),
-    source: source?.toString() || '社区',
-    icon: icon?.toString() || '🔧',
-    repoUrl: repoUrl?.toString()
-  }, corsHeaders);
+    contributor: author,
+    category,
+    source,
+    icon,
+    repoUrl
+  }, corsHeaders, env);
 }
 
-async function processSubmission(data, corsHeaders) {
+async function processSubmission(data, corsHeaders, env) {
   const { skillName, content, contributor, category, source, icon, repoUrl } = data;
+  const githubToken = '';
   
   if (!skillName || !content) {
     return new Response(JSON.stringify({ 
       error: 'Missing required fields',
       message: '技能名称和描述不能为空'
     }), { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
+  }
+
+  if (!githubToken) {
+    return new Response(JSON.stringify({ 
+      error: 'Server configuration error',
+      message: 'GitHub token not configured'
+    }), { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } });
   }
 
   const filename = `skill-${skillName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')}.md`;
@@ -125,7 +139,7 @@ ${repoUrl ? `### GitHub仓库\n${repoUrl}` : ''}
     {
       method: 'POST',
       headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Authorization': `token ${githubToken}`,
         'Accept': 'application/vnd.github.v3+json',
         'Content-Type': 'application/json',
         'User-Agent': 'OpenClaw-Skills-Hub'
