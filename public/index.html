@@ -44,17 +44,9 @@
             padding: 60px 24px 80px;
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
+        .header { text-align: center; margin-bottom: 56px; }
         
-        .logo {
-            display: inline-flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 20px;
-        }
+        .logo { display: inline-flex; align-items: center; gap: 14px; margin-bottom: 20px; }
         
         .logo-icon {
             width: 60px;
@@ -69,10 +61,7 @@
             animation: float 3s ease-in-out infinite;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
         
         .logo-text {
             font-size: 36px;
@@ -83,12 +72,7 @@
             background-clip: text;
         }
         
-        .subtitle {
-            font-size: 18px;
-            color: #888;
-            margin-bottom: 28px;
-            font-weight: 400;
-        }
+        .subtitle { font-size: 18px; color: #888; margin-bottom: 28px; font-weight: 400; }
         
         .github-link {
             display: inline-flex;
@@ -105,11 +89,7 @@
             box-shadow: 0 4px 15px rgba(255,107,53,0.3);
         }
         
-        .github-link:hover {
-            box-shadow: 0 8px 25px rgba(255,107,53,0.5);
-            transform: translateY(-2px);
-        }
-        
+        .github-link:hover { box-shadow: 0 8px 25px rgba(255,107,53,0.5); transform: translateY(-2px); }
         .github-icon { width: 18px; height: 18px; }
         
         .search-box { max-width: 600px; margin: 0 auto 56px; }
@@ -126,12 +106,7 @@
             transition: all 0.3s ease;
         }
         
-        .search-input:focus {
-            background: rgba(255,255,255,0.08);
-            border-color: #ff6b35;
-            box-shadow: 0 0 0 3px rgba(255,107,53,0.1);
-        }
-        
+        .search-input:focus { background: rgba(255,255,255,0.08); border-color: #ff6b35; box-shadow: 0 0 0 3px rgba(255,107,53,0.1); }
         .search-input::placeholder { color: #555; }
         
         .category { margin-bottom: 56px; }
@@ -146,12 +121,7 @@
             padding-left: 6px;
         }
         
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
         
         .card {
@@ -169,12 +139,7 @@
             box-shadow: 0 15px 40px rgba(255,107,53,0.25);
         }
         
-        .card-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
+        .card-header { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 14px; }
         
         .card-icon {
             width: 48px;
@@ -196,13 +161,7 @@
         
         .card-info { flex: 1; min-width: 0; }
         
-        .card-title {
-            font-size: 17px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
+        .card-title { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.3; }
         
         .card-badge {
             display: inline-block;
@@ -251,11 +210,7 @@
             box-shadow: 0 2px 10px rgba(255,107,53,0.3);
         }
         
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #ff5722 0%, #e67e22 100%);
-            box-shadow: 0 4px 15px rgba(255,107,53,0.5);
-            transform: translateY(-1px);
-        }
+        .btn-primary:hover { background: linear-gradient(135deg, #ff5722 0%, #e67e22 100%); transform: translateY(-1px); }
         
         .btn-secondary {
             background: rgba(255,255,255,0.05);
@@ -263,18 +218,9 @@
             border: 1px solid rgba(255,255,255,0.12);
         }
         
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            border-color: rgba(255,255,255,0.2);
-        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); color: #fff; }
         
-        .loading {
-            text-align: center;
-            padding: 60px;
-            color: #666;
-            font-size: 16px;
-        }
+        .loading { text-align: center; padding: 60px; color: #666; font-size: 16px; }
         
         .error {
             text-align: center;
@@ -298,10 +244,9 @@
             transition: all 0.2s;
         }
         
-        .refresh-btn:hover {
-            background: rgba(255,255,255,0.15);
-            color: #fff;
-        }
+        .refresh-btn:hover { background: rgba(255,255,255,0.15); color: #fff; }
+        
+        .cache-note { font-size: 12px; color: #666; margin-top: 8px; }
     </style>
 </head>
 <body>
@@ -316,8 +261,9 @@
             </div>
             <div class="subtitle">
                 <span id="skill-count">0</span> 个强大技能，让 AI 助手无所不能
-                <button class="refresh-btn" onclick="loadSkills()" title="刷新技能列表">🔄</button>
+                <button class="refresh-btn" onclick="loadSkills(true)" title="刷新技能列表">🔄</button>
             </div>
+            <div class="cache-note" id="cache-note"></div>
             <a href="https://github.com/zhangxun057/openclaw-skills" target="_blank" class="github-link">
                 <svg class="github-icon" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -339,43 +285,84 @@
         const GITHUB_REPO = 'zhangxun057/openclaw-skills';
         const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/contents/skills`;
         
-        // 分类关键词映射
+        const CACHE_KEY = 'openclaw_skills_cache';
+        const CACHE_DURATION = 60 * 60 * 1000; // 1小时缓存
+        
+        // 备用静态数据（API 失败时使用）
+        const FALLBACK_SKILLS = [
+            { name: 'feishu-bitable', category: '飞书生态', icon: '📋', source: 'community', desc: '飞书多维表格管理' },
+            { name: 'feishu-calendar', category: '飞书生态', icon: '📅', source: 'community', desc: '飞书日历与日程管理' },
+            { name: 'feishu-im-read', category: '飞书生态', icon: '💬', source: 'community', desc: '飞书消息读取工具' },
+            { name: 'feishu-task', category: '飞书生态', icon: '✅', source: 'community', desc: '飞书任务管理' },
+            { name: 'wechat-analyzer', category: '微信 & 社交', icon: '📊', source: 'community', desc: '微信好友分析与档案生成' },
+            { name: 'weflow', category: '微信 & 社交', icon: '💬', source: 'community', desc: '微信聊天记录工具集成' },
+            { name: 'wechat-send-message', category: '微信 & 社交', icon: '📤', source: 'community', desc: 'macOS微信发送消息' },
+            { name: 'browser-automation', category: '开发 & 部署', icon: '🌐', source: 'official', desc: 'OpenClaw 浏览器自动化操作' },
+            { name: 'cloudflare-deploy', category: '开发 & 部署', icon: '☁️', source: 'community', desc: 'Cloudflare Pages 自动部署' },
+            { name: 'skill-creator', category: '技能管理', icon: '🛠️', source: 'official', desc: '创建和管理 AgentSkills' },
+            { name: 'gateway-restart', category: '系统 & 工具', icon: '🔄', source: 'official', desc: 'OpenClaw Gateway 服务重启' },
+            { name: 'capability-evolver', category: '系统 & 工具', icon: '🧬', source: 'community', desc: 'AI 代理自进化引擎' },
+            { name: 'task-monitor', category: '系统 & 工具', icon: '📈', source: 'community', desc: '实时 Web 仪表板' },
+            { name: 'todolist-manager', category: '效率工具', icon: '✅', source: 'community', desc: '个人待办清单管理' },
+            { name: 'skill-radar', category: '技能管理', icon: '📡', source: 'community', desc: '技能市场雷达' },
+            { name: 'skill-auditor', category: '技能管理', icon: '🔎', source: 'community', desc: '技能质量审计' },
+            { name: 'swap', category: '技能管理', icon: '🔀', source: 'community', desc: '技能交换功能' },
+            { name: 'content-extract', category: '内容生成', icon: '📥', source: 'community', desc: 'URL 内容提取' },
+            { name: 'pdf-generator', category: '内容生成', icon: '📄', source: 'community', desc: 'PDF 生成工具' },
+            { name: 'project-manager', category: '目标管理', icon: '📁', source: 'community', desc: '项目管理工具' },
+        ];
+        
         const CATEGORY_RULES = {
-            'AI & 图像': ['ai-', 'image', 'vision', 'tts', 'audio', 'photo', 'flux', 'seedream'],
+            'AI & 图像': ['ai-', 'image', 'vision', 'tts', 'audio', 'photo', 'flux', 'seedream', 'edge'],
             '视频 & 数字人': ['video', 'digital-human', 'jimeng', 'remotion', 'marking'],
-            '微信 & 社交': ['wechat', 'weflow', 'weixin', 'wx', 'social'],
+            '微信 & 社交': ['wechat', 'weflow', 'weixin', 'wx', 'social', 'baoyu'],
             '飞书生态': ['feishu', 'lark', '飞书'],
             '开发 & 部署': ['deploy', 'cloudflare', 'vercel', 'browser', 'automation', 'dev'],
-            '系统 & 工具': ['gateway', 'task', 'monitor', 'system', '工具'],
-            '效率工具': ['diary', 'todolist', 'todo', 'brainstorm', 'note'],
-            '技能管理': ['skill', 'swap', 'find', 'radar', 'auditor', 'creator'],
-            '内容生成': ['content', '生成', '写作', 'write'],
+            '系统 & 工具': ['gateway', 'task', 'monitor', 'system', 'cron'],
+            '效率工具': ['diary', 'todolist', 'todo', 'brainstorm', 'note', 'interview'],
+            '技能管理': ['skill', 'swap', 'find', 'radar', 'auditor', 'creator', 'self-improving'],
+            '内容生成': ['content', '生成', '写作', 'write', 'extract', 'pdf'],
             '目标管理': ['goal', '目标', '计划', 'project']
         };
         
-        // 来源判断
         const SOURCE_KEYWORDS = {
             official: ['openclaw', '官方'],
             original: ['原创', 'zhangxun', '张洵']
         };
         
-        // 图标映射
         const ICON_MAP = {
             'feishu': '📋', 'wechat': '💬', 'wechat-analyzer': '📊', 'weflow': '💬',
             'wechat-send-message': '📤', 'browser-automation': '🌐', 'cloudflare-deploy': '☁️',
             'skill-creator': '🛠️', 'gateway-restart': '🔄', 'capability-evolver': '🧬',
-            'task-monitor': '📈', 'conversation-save': '💾', 'swap': '🔀',
-            'ai-image-generation': '🎨', 'flux-image': '✨', 'ai-product-photography': '📸',
-            'ai-marketing-videos': '🎬', 'ai-video-generation': '🎥', 'remotion-render': '🎞️',
-            'jimeng-digital-human': '👤', 'edge-tts': '🔊', 'pdf-generator': '📄',
-            'diary-assistant': '📔', 'todolist-manager': '✅', 'brainstorming': '💡',
-            'infographic-designer': '📊', 'search-layer': '🔍', 'ddg-web-search': '🔍',
-            'content-extract': '📥', 'skill-radar': '📡', 'skill-auditor': '🔎',
-            'wechat-mp-cn': '🛰️', 'baoyu-post-to-wechat': '📣', 'project-manager': '📁',
-            'web-design-guidelines': '🎨', 'vercel-react-best-practices': '⚛️',
-            'self-improving-agent': '🧠', 'interview-tracker': '📞', 'find-skills': '🔎',
-            'seedream-image-generation': '🏞️', 'agent-tools': '🤖', 'self-improving': '🧬'
+            'task-monitor': '📈', 'swap': '🔀', 'todolist-manager': '✅',
+            'skill-radar': '📡', 'skill-auditor': '🔎', 'content-extract': '📥',
+            'pdf-generator': '📄', 'project-manager': '📁', 'diary-assistant': '📔',
+            'jimeng-digital-human': '👤', 'edge-tts': '🔊', 'image-generation': '🎨',
+            'seedream': '🏞️', 'news-aggregator': '📰', 'find-skills': '🔍'
         };
+        
+        // 缓存管理
+        function getCache() {
+            try {
+                const cached = localStorage.getItem(CACHE_KEY);
+                if (cached) {
+                    const data = JSON.parse(cached);
+                    if (Date.now() - data.timestamp < CACHE_DURATION) {
+                        return data;
+                    }
+                }
+            } catch (e) {}
+            return null;
+        }
+        
+        function setCache(skills) {
+            try {
+                localStorage.setItem(CACHE_KEY, JSON.stringify({
+                    skills: skills,
+                    timestamp: Date.now()
+                }));
+            } catch (e) {}
+        }
         
         function getCategory(slug) {
             slug = slug.toLowerCase();
@@ -402,7 +389,7 @@
             try {
                 const response = await fetch(
                     `https://api.github.com/repos/${GITHUB_REPO}/contents/skills/${slug}/SKILL.md`,
-                    { cache: 'no-cache' }
+                    { cache: 'no-store' }
                 );
                 if (!response.ok) return '';
                 const data = await response.json();
@@ -422,50 +409,87 @@
             return '';
         }
         
-        async function loadSkills() {
+        async function loadSkills(forceRefresh = false) {
             const content = document.getElementById('content');
+            const cacheNote = document.getElementById('cache-note');
+            
+            // 尝试从缓存加载
+            if (!forceRefresh) {
+                const cache = getCache();
+                if (cache) {
+                    cacheNote.textContent = '📦 使用缓存 (1小时内有效)';
+                    renderSkillsOrganize(cache.skills);
+                    return;
+                }
+            }
+            
             content.innerHTML = '<div class="loading">正在从 GitHub 加载技能列表...</div>';
             
             try {
-                // 获取 skills 目录
-                const response = await fetch(GITHUB_API, { cache: 'no-cache' });
-                if (!response.ok) throw new Error('无法获取技能列表');
+                const response = await fetch(GITHUB_API, { cache: 'no-store' });
+                if (!response.ok) throw new Error('API 限流或网络错误');
                 
                 const items = await response.json();
                 const skillDirs = items.filter(item => item.type === 'dir');
                 
-                // 并行获取所有技能的描述
-                const skillsWithDesc = await Promise.all(
-                    skillDirs.map(async (dir) => {
-                        const desc = await fetchSkillDescription(dir.name);
-                        return {
-                            name: dir.name,
-                            slug: dir.name,
-                            desc: desc || `查看 ${dir.name} 技能详情`,
-                            icon: getIcon(dir.name),
-                            source: getSource(dir.name, desc),
-                            category: getCategory(dir.name)
-                        };
-                    })
-                );
-                
-                // 按分类组织
-                const categorized = {};
-                for (const skill of skillsWithDesc) {
-                    const cat = skill.category;
-                    if (!categorized[cat]) categorized[cat] = [];
-                    categorized[cat].push(skill);
+                // 获取描述（限制并发数）
+                const skillsWithDesc = [];
+                const batchSize = 5;
+                for (let i = 0; i < skillDirs.length; i += batchSize) {
+                    const batch = skillDirs.slice(i, i + batchSize);
+                    const results = await Promise.all(
+                        batch.map(async (dir) => {
+                            const desc = await fetchSkillDescription(dir.name);
+                            return {
+                                name: dir.name,
+                                slug: dir.name,
+                                desc: desc || `查看 ${dir.name} 技能详情`,
+                                icon: getIcon(dir.name),
+                                source: getSource(dir.name, desc),
+                                category: getCategory(dir.name)
+                            };
+                        })
+                    );
+                    skillsWithDesc.push(...results);
                 }
                 
-                // 更新计数
-                document.getElementById('skill-count').textContent = skillDirs.length;
+                // 缓存结果
+                setCache(skillsWithDesc);
+                cacheNote.textContent = '✅ 已更新到最新';
                 
-                // 渲染
-                renderSkills(categorized);
+                renderSkillsOrganize(skillsWithDesc);
                 
             } catch (error) {
-                content.innerHTML = `<div class="error">加载失败: ${error.message}<br><br>请检查网络或稍后重试</div>`;
+                console.error('加载失败:', error);
+                
+                // 尝试使用缓存
+                const cache = getCache();
+                if (cache) {
+                    cacheNote.textContent = '⚠️ API 失败，使用缓存数据';
+                    renderSkillsOrganize(cache.skills);
+                    return;
+                }
+                
+                // 使用备用数据
+                cacheNote.textContent = '⚠️ 使用离线数据';
+                const fallback = FALLBACK_SKILLS.map(s => ({
+                    ...s,
+                    category: s.category || getCategory(s.name)
+                }));
+                renderSkillsOrganize(fallback);
             }
+        }
+        
+        function renderSkillsOrganize(skills) {
+            const categorized = {};
+            for (const skill of skills) {
+                const cat = skill.category || getCategory(skill.slug || skill.name);
+                if (!categorized[cat]) categorized[cat] = [];
+                categorized[cat].push(skill);
+            }
+            
+            document.getElementById('skill-count').textContent = skills.length;
+            renderSkills(categorized);
         }
         
         function renderSkills(categorized) {
@@ -488,18 +512,19 @@
                     <div class="grid">`;
                 
                 for (const skill of items) {
+                    const name = skill.slug || skill.name;
                     html += `<div class="card" data-skill="">
                         <div class="card-header">
                             <div class="card-icon icon-${skill.source}">${skill.icon}</div>
                             <div class="card-info">
-                                <div class="card-title">${formatName(skill.name)}</div>
+                                <div class="card-title">${formatName(name)}</div>
                                 <span class="card-badge badge-${skill.source}">${sourceLabels[skill.source]}</span>
                             </div>
                         </div>
                         <div class="card-desc">${skill.desc}</div>
                         <div class="card-actions">
-                            <a href="https://github.com/${GITHUB_REPO}/tree/master/skills/${skill.slug}" target="_blank" class="btn btn-primary">查看</a>
-                            <a href="https://github.com/${GITHUB_REPO}/archive/refs/heads/master.zip" download class="btn btn-secondary" onclick="event.stopPropagation(); prompt('技能文件夹下载方法:\n1. 点击上方【查看】按钮\n2. 在GitHub页面点击绿色 Code 按钮\n3. 选择 Download ZIP')">下载</a>
+                            <a href="https://github.com/${GITHUB_REPO}/tree/master/skills/${name}" target="_blank" class="btn btn-primary">查看</a>
+                            <a href="https://github.com/${GITHUB_REPO}/archive/refs/heads/master.zip" download class="btn btn-secondary">下载</a>
                         </div>
                     </div>`;
                 }
@@ -511,12 +536,9 @@
         }
         
         function formatName(slug) {
-            return slug.split(/[-_]/).map(w => 
-                w.charAt(0).toUpperCase() + w.slice(1)
-            ).join(' ');
+            return slug.split(/[-_]/).map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
         }
         
-        // 搜索功能
         document.getElementById('search').addEventListener('input', (e) => {
             const query = e.target.value.toLowerCase();
             document.querySelectorAll('[data-skill]').forEach(card => {
@@ -525,7 +547,6 @@
             });
         });
         
-        // 初始加载
         loadSkills();
     </script>
 </body>
