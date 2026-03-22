@@ -14,13 +14,23 @@ jobs:
       deployments: write
     
     steps:
-      - name: Checkout
+      - name: Checkout main repo
         uses: actions/checkout@v4
 
-      - name: Copy static HTML to dist
+      - name: Checkout skilllist from source repo
+        uses: actions/checkout@v4
+        with:
+          repository: zhangxun057/openclaw-skills
+          path: skilllist-source
+          sparse-checkout: |
+            skilllist.json
+
+      - name: Prepare dist
         run: |
           mkdir -p dist
           cp public/index.html dist/index.html
+          # 把JSON转成JS变量
+          echo "var SKILL_DATA = $(cat skilllist-source/skilllist.json);" > dist/skills.js
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1

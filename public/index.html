@@ -427,6 +427,7 @@
         </div>
     </div>
 
+    <script src="/skills.js"></script>
     <script>
         const GITHUB_REPO = 'zhangxun057/openclaw-skills';
         const SKILLS_API = `https://api.github.com/repos/${GITHUB_REPO}/contents/skilllist.json`;
@@ -435,7 +436,11 @@
         const CACHE_KEY = 'openclaw_skills_cache_v2';
         const CACHE_DURATION = 60 * 60 * 1000;
         
+        // 嵌入的静态数据（自动同步）
         let skillMetadata = {};
+        if (typeof SKILL_LIST_EMBEDDED !== 'undefined') {
+            try { skillMetadata = SKILL_LIST_EMBEDDED; } catch(e) {}
+        }
         let allSkills = [];
         
         function getCache() {
@@ -512,6 +517,29 @@
         async function loadSkills(forceRefresh = false) {
             const content = document.getElementById('content');
             const cacheNote = document.getElementById('cache-note');
+            
+            // 优先使用嵌入式静态数据（无API限流）
+            if (typeof SKILL_DATA !== 'undefined' && SKILL_DATA && !forceRefresh) {
+                skillMetadata = SKILL_DATA;
+                // 从嵌入数据构建技能列表
+                allSkills = Object.keys(skillMetadata).map(name => {
+                    const meta = skillMetadata[name];
+                    return {
+                        name: name,
+                        slug: name,
+                        desc: meta.description || '',
+                        icon: meta.icon || '🔧',
+                        source: meta.source || '社区',
+                        category: meta.category || '其他',
+                        rating: meta.rating || 3,
+                        version: meta.version || '1.0.0',
+                        author: meta.author || ''
+                    };
+                });
+                cacheNote.textContent = '✅ 使用嵌入式数据（自动同步）';
+                renderSkills(allSkills);
+                return;
+            }
             
             if (!forceRefresh) {
                 const cache = getCache();
