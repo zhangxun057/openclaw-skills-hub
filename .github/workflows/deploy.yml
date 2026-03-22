@@ -30,8 +30,10 @@ jobs:
       - name: Prepare dist
         run: |
           mkdir -p dist
-          # 把skilllist嵌入到HTML中（AI可以直接读取）
+          # 复制HTML
           cp public/index.html dist/index.html
+          # 复制静态JSON（方案C）
+          cp skilllist-source/skilllist.json dist/skilllist.json
           # 把JSON转成JS变量
           echo "var SKILL_DATA = $(cat skilllist-source/skilllist.json);" > dist/skills.js
           # 在HTML末尾嵌入技能数据（供AI读取，不显示）
