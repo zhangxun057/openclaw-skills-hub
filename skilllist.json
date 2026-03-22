@@ -1,0 +1,552 @@
+{
+  "feishu-auto-reply": {
+    "name": "feishu-auto-reply",
+    "icon": "📋",
+    "source": "原创",
+    "category": "飞书生态",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "自动识别飞书对话截图并代为回复"
+  },
+  "feishu-bitable": {
+    "name": "feishu-bitable",
+    "icon": "📊",
+    "source": "飞书官方",
+    "category": "飞书生态",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "飞书",
+    "description": "飞书多维表格的创建、查询、编辑和管理"
+  },
+  "feishu-bitable-upload": {
+    "name": "feishu-bitable-upload",
+    "icon": "📤",
+    "source": "原创",
+    "category": "飞书生态",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "飞书多维表格附件上传功能"
+  },
+  "feishu-calendar": {
+    "name": "feishu-calendar",
+    "icon": "📅",
+    "source": "飞书官方",
+    "category": "飞书生态",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "飞书",
+    "description": "飞书日历与日程管理工具集"
+  },
+  "feishu-card": {
+    "name": "feishu-card",
+    "icon": "🎴",
+    "source": "clawhub",
+    "category": "飞书生态",
+    "rating": 4,
+    "version": "1.4.11",
+    "author": "社区",
+    "description": "发送富媒体飞书卡片，支持Markdown和按钮"
+  },
+  "feishu-common": {
+    "name": "feishu-common",
+    "icon": "🔧",
+    "source": "社区",
+    "category": "飞书生态",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "飞书通用工具集成"
+  },
+  "feishu-create-doc": {
+    "name": "feishu-create-doc",
+    "icon": "📝",
+    "source": "飞书官方",
+    "category": "飞书生态",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "飞书",
+    "description": "从Markdown创建飞书云文档"
+  },
+  "feishu-im-read": {
+    "name": "feishu-im-read",
+    "icon": "💬",
+    "source": "飞书官方",
+    "category": "飞书生态",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "飞书",
+    "description": "读取飞书聊天记录和话题消息"
+  },
+  "feishu-interactive-card": {
+    "name": "feishu-interactive-card",
+    "icon": "🎯",
+    "source": "社区",
+    "category": "飞书生态",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "创建交互式飞书卡片，按钮表单都能有"
+  },
+  "feishu-task": {
+    "name": "feishu-task",
+    "icon": "✅",
+    "source": "飞书官方",
+    "category": "飞书生态",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "飞书",
+    "description": "飞书任务创建、查询、更新和清单管理"
+  },
+  "wechat-analyzer": {
+    "name": "wechat-analyzer",
+    "icon": "📊",
+    "source": "原创",
+    "category": "微信生态",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "微信好友自动化分析与档案生成"
+  },
+  "weflow": {
+    "name": "weflow",
+    "icon": "💬",
+    "source": "原创",
+    "category": "微信生态",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "微信聊天记录导出和查询工具"
+  },
+  "wechat-send-message": {
+    "name": "wechat-send-message",
+    "icon": "📤",
+    "source": "原创",
+    "category": "微信生态",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "macOS微信自动发送消息"
+  },
+  "wechat-mp-cn": {
+    "name": "wechat-mp-cn",
+    "icon": "🛰️",
+    "source": "社区",
+    "category": "微信生态",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "微信公众号文章监控与阅读量追踪"
+  },
+  "baoyu-post-to-wechat": {
+    "name": "baoyu-post-to-wechat",
+    "icon": "📢",
+    "source": "社区",
+    "category": "微信生态",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "公众号内容同步发布到微信"
+  },
+  "browser-automation": {
+    "name": "browser-automation",
+    "icon": "🌐",
+    "source": "官方",
+    "category": "项目开发",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "OpenClaw",
+    "description": "浏览器自动化操作，抓取、截图、填表"
+  },
+  "cloudflare-deploy": {
+    "name": "cloudflare-deploy",
+    "icon": "☁️",
+    "source": "原创",
+    "category": "项目开发",
+    "rating": 5,
+    "version": "1.2.0",
+    "author": "张洵",
+    "description": "GitHub项目自动部署到Cloudflare Pages"
+  },
+  "skill-creator": {
+    "name": "skill-creator",
+    "icon": "🛠️",
+    "source": "官方",
+    "category": "技能管理",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "OpenClaw",
+    "description": "创建和管理AgentSkills技能"
+  },
+  "gateway-restart": {
+    "name": "gateway-restart",
+    "icon": "🔄",
+    "source": "官方",
+    "category": "系统工具",
+    "rating": 4,
+    "version": "1.1.0",
+    "author": "OpenClaw",
+    "description": "重启OpenClaw Gateway服务"
+  },
+  "vercel-composition-patterns": {
+    "name": "vercel-composition-patterns",
+    "icon": "⚛️",
+    "source": "skills.sh",
+    "category": "项目开发",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "Vercel",
+    "description": "React组件组合模式和最佳实践"
+  },
+  "vercel-react-best-practices": {
+    "name": "vercel-react-best-practices",
+    "icon": "⚛️",
+    "source": "skills.sh",
+    "category": "项目开发",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "Vercel",
+    "description": "Vercel官方React开发规范"
+  },
+  "capability-evolver": {
+    "name": "capability-evolver",
+    "icon": "🧬",
+    "source": "原创",
+    "category": "龙虾进化",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "AI代理自我进化引擎，持续改进"
+  },
+  "task-monitor": {
+    "name": "task-monitor",
+    "icon": "📈",
+    "source": "社区",
+    "category": "系统工具",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "实时Web仪表板监控会话和任务"
+  },
+  "cron-generator": {
+    "name": "cron-generator",
+    "icon": "⏰",
+    "source": "社区",
+    "category": "系统工具",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "创建和管理定时任务"
+  },
+  "self-improving-agent": {
+    "name": "self-improving-agent",
+    "icon": "🧠",
+    "source": "社区",
+    "category": "龙虾进化",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "记录学习、错误和修正，持续改进"
+  },
+  "todolist-manager": {
+    "name": "todolist-manager",
+    "icon": "✅",
+    "source": "原创",
+    "category": "目标管理",
+    "rating": 4,
+    "version": "1.1.0",
+    "author": "张洵",
+    "description": "个人待办清单和愿望清单管理"
+  },
+  "diary-assistant": {
+    "name": "diary-assistant",
+    "icon": "📔",
+    "source": "原创",
+    "category": "效率工具",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "自动写日记，总结对话记录"
+  },
+  "brainstorming": {
+    "name": "brainstorming",
+    "icon": "💡",
+    "source": "虾评Skill",
+    "category": "效率工具",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "虾评",
+    "description": "头脑风暴工具，把想法转成设计规格"
+  },
+  "interview-tracker": {
+    "name": "interview-tracker",
+    "icon": "📞",
+    "source": "社区",
+    "category": "业务运营",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "客户拜访追踪与自动记录"
+  },
+  "skill-radar": {
+    "name": "skill-radar",
+    "icon": "📡",
+    "source": "原创",
+    "category": "技能管理",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "监控热门Skill市场，智能推荐新技能"
+  },
+  "skill-auditor": {
+    "name": "skill-auditor",
+    "icon": "🔎",
+    "source": "原创",
+    "category": "技能管理",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "评估Skill质量并生成报告"
+  },
+  "swap": {
+    "name": "swap",
+    "icon": "🔀",
+    "source": "原创",
+    "category": "技能管理",
+    "rating": 5,
+    "version": "2.1.0",
+    "author": "张洵",
+    "description": "技能交换平台，互相分享技能"
+  },
+  "find-skills": {
+    "name": "find-skills",
+    "icon": "🔍",
+    "source": "clawhub",
+    "category": "技能管理",
+    "rating": 4,
+    "version": "0.1.0",
+    "author": "ClawHub",
+    "description": "发现和安装Agent技能"
+  },
+  "search-layer": {
+    "name": "search-layer",
+    "icon": "🔍",
+    "source": "社区",
+    "category": "系统工具",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "多源搜索聚合与去重"
+  },
+  "content-extract": {
+    "name": "content-extract",
+    "icon": "📥",
+    "source": "社区",
+    "category": "系统工具",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "网页URL提取为Markdown格式"
+  },
+  "ddg-web-search": {
+    "name": "ddg-web-search",
+    "icon": "🔍",
+    "source": "社区",
+    "category": "系统工具",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "DuckDuckGo网页搜索，无需API Key"
+  },
+  "edge-tts": {
+    "name": "edge-tts",
+    "icon": "🔊",
+    "source": "社区",
+    "category": "内容生成",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "文字转语音，支持多语言多音色"
+  },
+  "pdf-generator": {
+    "name": "pdf-generator",
+    "icon": "📄",
+    "source": "社区",
+    "category": "内容生成",
+    "rating": 4,
+    "version": "1.0.1",
+    "author": "社区",
+    "description": "Markdown/HTML生成专业PDF文档"
+  },
+  "mineru-extract": {
+    "name": "mineru-extract",
+    "icon": "📑",
+    "source": "社区",
+    "category": "内容生成",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "高精度URL内容提取和解析"
+  },
+  "project-manager": {
+    "name": "project-manager",
+    "icon": "📁",
+    "source": "原创",
+    "category": "目标管理",
+    "rating": 2,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "项目管理工具，自动化创建项目结构"
+  },
+  "web-design-guidelines": {
+    "name": "web-design-guidelines",
+    "icon": "🎨",
+    "source": "skills.sh",
+    "category": "项目开发",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "Vercel",
+    "description": "前端UI/UX设计最佳实践指南"
+  },
+  "infographic-designer": {
+    "name": "infographic-designer",
+    "icon": "📊",
+    "source": "虾评Skill",
+    "category": "内容生成",
+    "rating": 5,
+    "version": "1.0.0",
+    "author": "虾评",
+    "description": "信息图设计与视觉生成指导"
+  },
+  "jimeng-digital-human": {
+    "name": "jimeng-digital-human",
+    "icon": "👤",
+    "source": "社区",
+    "category": "视频 & 数字人",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "即梦数字人，图片+音频生成口播视频"
+  },
+  "agent-tools": {
+    "name": "agent-tools",
+    "icon": "🤖",
+    "source": "社区",
+    "category": "AI & 图像",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "运行150+ AI应用的CLI工具"
+  },
+  "ai-image-generation": {
+    "name": "ai-image-generation",
+    "icon": "🎨",
+    "source": "社区",
+    "category": "AI & 图像",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "AI图像生成工具集成"
+  },
+  "flux-image": {
+    "name": "flux-image",
+    "icon": "✨",
+    "source": "社区",
+    "category": "AI & 图像",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "Flux图像生成模型"
+  },
+  "ai-product-photography": {
+    "name": "ai-product-photography",
+    "icon": "📸",
+    "source": "社区",
+    "category": "AI & 图像",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "AI产品摄影，一键生成模特图"
+  },
+  "ai-marketing-videos": {
+    "name": "ai-marketing-videos",
+    "icon": "🎬",
+    "source": "社区",
+    "category": "视频 & 数字人",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "AI营销视频生成"
+  },
+  "ai-video-generation": {
+    "name": "ai-video-generation",
+    "icon": "🎥",
+    "source": "社区",
+    "category": "视频 & 数字人",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "AI视频生成工具"
+  },
+  "remotion-render": {
+    "name": "remotion-render",
+    "icon": "🎞️",
+    "source": "社区",
+    "category": "视频 & 数字人",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "Remotion视频代码渲染"
+  },
+  "jimeng-4-image-generation": {
+    "name": "jimeng-4-image-generation",
+    "icon": "🖼️",
+    "source": "社区",
+    "category": "AI & 图像",
+    "rating": 3,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "即梦4.0图片生成"
+  },
+  "seedream-image-generation": {
+    "name": "seedream-image-generation",
+    "icon": "🏞️",
+    "source": "原创",
+    "category": "AI & 图像",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "字节Seedream图像生成API封装"
+  },
+  "vision-analyzer": {
+    "name": "vision-analyzer",
+    "icon": "👁️",
+    "source": "社区",
+    "category": "AI & 图像",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "阿里云视觉分析，图片内容识别"
+  },
+  "news-aggregator": {
+    "name": "news-aggregator",
+    "icon": "📰",
+    "source": "社区",
+    "category": "效率工具",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "社区",
+    "description": "聚合28个来源的实时新闻资讯"
+  },
+  "koubo-generator": {
+    "name": "koubo-generator",
+    "icon": "🎙️",
+    "source": "原创",
+    "category": "内容生成",
+    "rating": 4,
+    "version": "1.0.0",
+    "author": "张洵",
+    "description": "每日口播文案自动生成，为数字人生成短视频口播脚本"
+  }
+}
