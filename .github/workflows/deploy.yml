@@ -30,9 +30,19 @@ jobs:
       - name: Prepare dist
         run: |
           mkdir -p dist
+          # 把skilllist嵌入到HTML中（AI可以直接读取）
           cp public/index.html dist/index.html
           # 把JSON转成JS变量
           echo "var SKILL_DATA = $(cat skilllist-source/skilllist.json);" > dist/skills.js
+          # 在HTML末尾嵌入技能数据（供AI读取，不显示）
+          cat >> dist/index.html << 'SKILLEMBED'
+          <!-- AI-readable skill list (hidden) -->
+          <script type="application/ld+json" id="skill-list-data">
+          SKILLEMBED
+          cat skilllist-source/skilllist.json >> dist/index.html
+          cat >> dist/index.html << 'SKILLEMBED'
+          </script>
+          SKILLEMBED
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
