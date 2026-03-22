@@ -394,7 +394,11 @@
                 if (!response.ok) return '';
                 const data = await response.json();
                 if (data.content) {
-                    const content = atob(data.content);
+                    // 正确解码 UTF-8 中文
+                    const binary = atob(data.content);
+                    const bytes = new Uint8Array(binary.length);
+                    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+                    const content = new TextDecoder('utf-8').decode(bytes);
                     const match = content.match(/description:\s*["']([^"']+)["']/);
                     if (match) return match[1];
                     const lines = content.split('\n');
